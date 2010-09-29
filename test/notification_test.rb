@@ -21,7 +21,7 @@ context "APND Notification" do
   test "returns a Notification object when given valid byte string" do
     notification = APND::Notification.parse(@bytes)
 
-    [:alert, :badge, :custom, :sound, :token, :hex_token, :to_bytes, :aps].each do |key|
+    [:alert, :badge, :custom, :sound, :token, :hex_token, :to_bytes, :aps, :aps_json].each do |key|
       assert_equal @notification.send(key), notification.send(key)
     end
   end

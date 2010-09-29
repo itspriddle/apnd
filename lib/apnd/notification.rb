@@ -120,11 +120,11 @@ module APND
     #
     # Returns the Notification's aps hash as json
     #
-    def payload
-      return @payload if @payload
+    def aps_json
+      return @aps_json if @aps_json
       json = aps.to_json
       raise APND::InvalidPayload.new(json) if json.size > 256
-      @payload = json
+      @aps_json = json
     end
 
     #
@@ -132,7 +132,7 @@ module APND
     # to Apple
     #
     def to_bytes
-      @bytes ||= "\0\0 %s\0%s%s" % [hex_token, payload.length.chr, payload]
+      @bytes ||= "\0\0 %s\0%s%s" % [hex_token, aps_json.length.chr, aps_json]
     end
 
   end
