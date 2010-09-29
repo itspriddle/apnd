@@ -50,6 +50,10 @@ opts = OptionParser.new do |opt|
     options[:daemon_log_file] = log
   end
 
+  opt.on('--daemon-timer    [SECONDS]', 'Set APND queue refresh time to SECONDS (default is 30)') do |seconds|
+    options[:daemon_timer] = seconds.to_i
+  end
+
   opt.on('--foreground', 'Run APND in foreground without daemonizing') do
     options[:foreground] = true
   end
@@ -94,6 +98,7 @@ APND.configure do |config|
   config.daemon.bind     = options[:daemon_bind]     if options[:daemon_bind]
   config.daemon.port     = options[:daemon_port]     if options[:daemon_port]
   config.daemon.log_file = options[:daemon_log_file] if options[:daemon_log_file]
+  config.daemon.timer    = options[:daemon_timer]    if options[:daemon_timer]
 end
 
 if APND.settings.apple.cert.nil?

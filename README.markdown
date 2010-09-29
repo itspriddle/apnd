@@ -37,6 +37,7 @@ utility is used to start APND.
             --daemon-port     [PORT]     Run APND on PORT (default is 22195)
             --daemon-bind     [ADDRESS]  Bind APND to ADDRESS (default is 0.0.0.0)
             --daemon-log-file [PATH]     PATH to APND log file (default is /var/log/apnd.log)
+            --daemon-timer    [SECONDS]  Set APND queue refresh time to SECONDS (default is 30)
             --foreground                 Run APND in foreground without daemonizing
 
     Help:
