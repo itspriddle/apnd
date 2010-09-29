@@ -26,22 +26,7 @@ Gem::Specification.new do |s|
   s.rdoc_options     = ["--charset=UTF-8"]
 
   s.description = <<-DESC
-
-    # APND
-
     APND (Apple Push Notification Daemon) is a ruby library to send Apple Push
     Notifications (APNs) to iPhones.
-
-    Apple recommends application developers create one connection to their
-    upstream push notification server, rather than creating one per notification.
-
-    APND acts as an intermediary between your application and Apple. Your
-    application's notifications are queued to APND, which are then sent to
-    Apple over a single connection.
-
-    Within ruby applications, `APND::Notification` can be used to send
-    notifications to a running APND instance or directly to Apple. A command
-    line utility, `apnd-push`, can be used to send single notifications for
-    testing purposes.
   DESC
 end
