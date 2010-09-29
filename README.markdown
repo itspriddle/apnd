@@ -2,3 +2,96 @@
 
 APND (Apple Push Notification Daemon) is a ruby library to send Apple Push
 Notifications (APNs) to iPhones.
+
+Apple recommends application developers create one connection to their
+upstream push notification server, rather than creating one per notification.
+
+APND acts as an intermediary between your application and Apple (see **APND
+Daemon** below). Your application's notifications are queued to APND, which
+are then sent to Apple over a single connection.
+
+Within ruby applications, `APND::Notification` can be used to send
+notifications to a running APND instance (see **APND Notification** below) or
+directly to Apple. A command line utility, `apnd-push`, can be used to send
+single notifications for testing purposes (see **APND Client** below).
+
+
+## General Usage
+
+### APND Daemon
+
+APND receives push notifications from your application and relays them to
+Apple over a single connection as explained above. The `apnd` command line
+utility is used to start APND.
+
+    Usage:
+      apnd [OPTIONS] --apple-cert </path/to/cert>
+
+    Required Arguments:
+            --apple-cert      [PATH]     PATH to APN certificate from Apple
+
+    Optional Arguments:
+            --apple-host      [HOST]     Connect to Apple at HOST (default is gateway.sandbox.push.apple.com)
+            --apple-port      [PORT]     Connect to Apple on PORT (default is 2195)
+            --apple-cert-pass [PASSWORD] PASSWORD for APN certificate from Apple
+            --daemon-port     [PORT]     Run APND on PORT (default is 22195)
+            --daemon-bind     [ADDRESS]  Bind APND to ADDRESS (default is 0.0.0.0)
+            --daemon-log-file [PATH]     PATH to APND log file (default is /var/log/apnd.log)
+            --foreground                 Run APND in foreground without daemonizing
+
+    Help:
+            --version                    Show version
+            --help                       Show this message
+
+
+### APND Client
+
+APND includes a command line utility, `apnd-push`, which can be used to send
+notifications to a running APND instance, or Apple directly. It is only
+recommended to send notifications directly to Apple for testing purposes.
+
+    Usage:
+      apnd-push [OPTIONS] --token <token> --alert <alert>
+
+    Required Arguments:
+            --token  [TOKEN]             Set Notification's iPhone token to TOKEN
+            --alert  [MESSAGE]           Set Notification's alert to MESSAGE
+
+    Optional Arguments:
+            --sound  [SOUND]             Set Notification's sound to SOUND (default is 'default')
+            --badge  [NUMBER]            Set Notification's badge number to NUMBER
+            --custom [JSON]              Set Notification's custom data to JSON
+            --host   [HOST]              Send Notification to HOST, usually the one running APND (default is 'localhost')
+            --port   [PORT]              Send Notification on PORT (default is 22195)
+
+    Help:
+            --version                    Show version
+            --help                       Show this message
+
+
+### APND Notification
+
+The `APND::Notification` class can be used within your application to send
+push notifications to APND.
+
+    require 'apnd'
+
+    # Set the host/port APND is running on
+    # (not needed if you're using localhost:22195)
+
+    APND::Notification.upstream_host = 'localhost'
+    APND::Notification.upstream_port = 22195
+
+    notification = APND::Notification.create(
+      :alert  => 'Alert!',
+      :token  => 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
+      :badge  => 99
+    )
+
+
+## Credit
+
+APND is based on [apnserver](http://github.com/bpoweski/apnserver) and
+[apn_on_rails](http://github.com/PRX/apn_on_rails). Either worked just how I
+wanted, so I rolled my own using theirs as starting points. If APND doesn't
+suit you, check them out instead.

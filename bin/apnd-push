@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+
+require 'apnd'
+
+require 'optparse'
+
+help = <<HELP
+Usage:
+  apnd-push [OPTIONS] --token <token> --alert <alert>
+
+HELP
+
+options = {}
+
+opts = OptionParser.new do |opt|
+  opt.banner = help
+
+  opt.separator "Required Arguments:\n"
+
+  opt.on('--token  [TOKEN]', "Set Notification's iPhone token to TOKEN") do |token|
+    options[:token] = token
+  end
+
+  opt.on('--alert  [MESSAGE]', "Set Notification's alert to MESSAGE") do |alert|
+    options[:alert] = alert
+  end
+
+  opt.separator "\nOptional Arguments:\n"
+  
+  opt.on('--sound  [SOUND]', "Set Notification's sound to SOUND (default is 'default')") do |sound|
+    options[:sound] = sound
+  end
+
+  opt.on('--badge  [NUMBER]', "Set Notification's badge number to NUMBER") do |badge|
+    options[:badge] = badge.to_i
+  end
+
+  opt.on('--custom [JSON]', "Set Notification's custom data to JSON") do |custom|
+    begin
+      options[:custom] = JSON.parse(custom)
+    rescue JSON::ParserError => e
+      puts "Invalid JSON: #{e}"
+      exit -1
+    end
+  end
+
+  opt.on('--host   [HOST]', "Send Notification to HOST, usually the one running APND (default is 'localhost')") do |host|
+    options[:host] = host
+  end
+
+  opt.on('--port   [PORT]', 'Send Notification on PORT (default is 22195)') do |port|
+    options[:port] = port.to_i
+  end
+
+  opt.separator "\nHelp:\n"
+
+  opt.on('--version', 'Show version') do
+    puts "APND #{APND::Version}"
+    exit
+  end
+
+  opt.on('--help', 'Show this message') do
+    puts opt
+    exit
+  end
+end
+
+begin
+  opts.parse!
+  if options.empty?
+    puts opts
+    exit
+  end
+
+  unless options[:token] && options[:alert]
+    raise OptionParser::MissingArgument, "must specify --token and --alert"
+  end
+rescue OptionParser::InvalidOption, OptionParser::MissingArgument
+  puts "#{$0}: #{$!.message}"
+  puts "#{$0}: try '#{$0} --help' for more information"
+  exit
+end
+
+# Configure Notification upstream host/port
+APND::Notification.upstream_host = options.delete(:host) if options[:host]
+APND::Notification.upstream_port = options.delete(:port) if options[:port]
+
+APND::Notification.create(options)
