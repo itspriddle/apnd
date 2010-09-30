@@ -90,9 +90,41 @@ push notifications to APND.
     )
 
 
+## Prerequisites
+
+You must have a valid Apple Push Notification Certificate for your iPhone
+application. Obtain your APN certificate from the iPhone Provisioning Portal
+at [developer.apple.com](http://developer.apple.com/).
+
+
+## Requirements
+
+* [EventMachine](http://github.com/eventmachine/eventmachine)
+* [Daemons](http://github.com/ghazel/daemons)
+* [JSON](http://github.com/flori/json)
+
+Ruby must be compiled with OpenSSL support.
+
+
+## Installation
+
+RubyGems:
+
+    gem install apnd
+
+Git:
+
+    git clone git://github.com/itspriddle/apnd.git
+
+
 ## Credit
 
 APND is based on [apnserver](http://github.com/bpoweski/apnserver) and
 [apn_on_rails](http://github.com/PRX/apn_on_rails). Either worked just how I
 wanted, so I rolled my own using theirs as starting points. If APND doesn't
 suit you, check them out instead.
+
+
+## Copyright
+
+Copyright (c) 2010 Joshua Priddle. See LICENSE for details.
