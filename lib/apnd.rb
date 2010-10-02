@@ -8,14 +8,14 @@ module APND
   autoload :Notification, 'apnd/notification'
 
   #
-  # APND Settings
+  # Returns APND::Settings
   #
   def self.settings
     @@settings ||= Settings.new
   end
 
   #
-  # Yields APND Settings
+  # Yields APND::Settings
   #
   def self.configure
     yield settings
@@ -23,6 +23,7 @@ module APND
 
 end
 
-def ohai(message)
+
+def ohai(message) #:nodoc:
   puts "[%s] %s" % [Time.now.strftime("%Y-%m-%d %H:%M:%S"), message]
 end

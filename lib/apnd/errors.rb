@@ -1,5 +1,5 @@
 module APND
-  module Errors
+  module Errors #:nodoc: all
 
     #
     # Raised if APN payload is larger than 256 bytes

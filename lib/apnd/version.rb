@@ -1,5 +1,5 @@
 module APND
-  class Version
+  class Version #:nodoc:
     MAJOR = 0
     MINOR = 1
     TINY  = 0
