@@ -18,15 +18,15 @@ Gem::Specification.new do |s|
 
   s.executables      = ['apnd', 'apnd-push']
 
-  s.add_dependency('eventmachine')
-  s.add_dependency('json')
-  s.add_dependency('daemons')
+  s.add_dependency('eventmachine', '= 0.12.10')
+  s.add_dependency('json',         '= 1.4.6')
+  s.add_dependency('daemons',      '= 1.1.0')
 
   s.extra_rdoc_files = ['README.markdown']
   s.rdoc_options     = ["--charset=UTF-8"]
 
   s.description = <<-DESC
     APND (Apple Push Notification Daemon) is a ruby library to send Apple Push
-    Notifications (APNs) to iPhones.
+    Notifications to iPhones.
   DESC
 end
