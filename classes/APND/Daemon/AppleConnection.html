@@ -57,9 +57,9 @@ persistent connection between <a href="../../APND.html">APND</a> and Apple
         <dd>
             <ul>
                 
-                <li><a href="#M000005">connect!</a>,</li>
+                <li><a href="#M000002">connect!</a>,</li>
                 
-                <li><a href="#M000004">connected?</a></li>
+                <li><a href="#M000001">connected?</a></li>
                 
             </ul>
         </dd>
@@ -68,7 +68,7 @@ persistent connection between <a href="../../APND.html">APND</a> and Apple
         <dd>
             <ul>
                 
-                <li><a href="#M000006">disconnect!</a></li>
+                <li><a href="#M000003">disconnect!</a></li>
                 
             </ul>
         </dd>
@@ -179,9 +179,9 @@ Setup a new connection
             <div class="sectiontitle">Instance Public methods</div>
             
             <div class="method">
-                <div class="title" id="M000005">
+                <div class="title" id="M000002">
                     
-                    <a name="M000005"></a><b>connect!</b>()
+                    <a name="M000002"></a><b>connect!</b>()
                     
                 </div>
                 
@@ -197,12 +197,12 @@ Connect to Apple over SSL
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000005_source')" id="l_M000005_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000002_source')" id="l_M000002_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/0fb404a6757fae1b2a43dfef241df83c30618c99/lib/apnd/daemon/apple_connection.rb#L34" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000005_source" class="dyn-source">
+                    <div id="M000002_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/apple_connection.rb, line 34</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">connect!</span>
       <span class="ruby-identifier">cert</span>         = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:cert</span>])
@@ -221,9 +221,9 @@ Connect to Apple over SSL
             </div>
             
             <div class="method">
-                <div class="title" id="M000004">
+                <div class="title" id="M000001">
                     
-                    <a name="M000004"></a><b>connected?</b>()
+                    <a name="M000001"></a><b>connected?</b>()
                     
                 </div>
                 
@@ -239,12 +239,12 @@ Returns true if the connection to Apple is open
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000004_source')" id="l_M000004_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000001_source')" id="l_M000001_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/0fb404a6757fae1b2a43dfef241df83c30618c99/lib/apnd/daemon/apple_connection.rb#L27" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000004_source" class="dyn-source">
+                    <div id="M000001_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/apple_connection.rb, line 27</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">connected?</span>
       <span class="ruby-operator">!</span> <span class="ruby-ivar">@ssl</span>.<span class="ruby-identifier">nil?</span>
@@ -255,9 +255,9 @@ Returns true if the connection to Apple is open
             </div>
             
             <div class="method">
-                <div class="title" id="M000006">
+                <div class="title" id="M000003">
                     
-                    <a name="M000006"></a><b>disconnect!</b>()
+                    <a name="M000003"></a><b>disconnect!</b>()
                     
                 </div>
                 
@@ -273,12 +273,12 @@ Close connection
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000006_source')" id="l_M000006_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000003_source')" id="l_M000003_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/0fb404a6757fae1b2a43dfef241df83c30618c99/lib/apnd/daemon/apple_connection.rb#L49" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000006_source" class="dyn-source">
+                    <div id="M000003_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/apple_connection.rb, line 49</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">disconnect!</span>
       <span class="ruby-ivar">@ssl</span>.<span class="ruby-identifier">close</span>

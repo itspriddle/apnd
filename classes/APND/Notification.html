@@ -57,7 +57,7 @@ creating new push notifications.
         <dd>
             <ul>
                 
-                <li><a href="#M000023">aps</a>,</li>
+                <li><a href="#M000026">aps</a>,</li>
                 
                 <li><a href="#M000028">aps_json</a></li>
                 
@@ -68,7 +68,7 @@ creating new push notifications.
         <dd>
             <ul>
                 
-                <li><a href="#M000015">create</a></li>
+                <li><a href="#M000017">create</a></li>
                 
             </ul>
         </dd>
@@ -77,7 +77,7 @@ creating new push notifications.
         <dd>
             <ul>
                 
-                <li><a href="#M000022">hex_token</a></li>
+                <li><a href="#M000025">hex_token</a></li>
                 
             </ul>
         </dd>
@@ -86,7 +86,7 @@ creating new push notifications.
         <dd>
             <ul>
                 
-                <li><a href="#M000021">new</a></li>
+                <li><a href="#M000024">new</a></li>
                 
             </ul>
         </dd>
@@ -95,7 +95,7 @@ creating new push notifications.
         <dd>
             <ul>
                 
-                <li><a href="#M000014">open_upstream_socket</a></li>
+                <li><a href="#M000015">open_upstream_socket</a></li>
                 
             </ul>
         </dd>
@@ -104,7 +104,7 @@ creating new push notifications.
         <dd>
             <ul>
                 
-                <li><a href="#M000017">parse</a>,</li>
+                <li><a href="#M000019">parse</a>,</li>
                 
                 <li><a href="#M000027">push!</a></li>
                 
@@ -124,7 +124,7 @@ creating new push notifications.
         <dd>
             <ul>
                 
-                <li><a href="#M000013">upstream_socket</a></li>
+                <li><a href="#M000014">upstream_socket</a></li>
                 
             </ul>
         </dd>
@@ -133,7 +133,7 @@ creating new push notifications.
         <dd>
             <ul>
                 
-                <li><a href="#M000016">valid?</a></li>
+                <li><a href="#M000018">valid?</a></li>
                 
             </ul>
         </dd>
@@ -232,9 +232,9 @@ Custom data to send
             <div class="sectiontitle">Class Public methods</div>
             
             <div class="method">
-                <div class="title" id="M000015">
+                <div class="title" id="M000017">
                     
-                    <a name="M000015"></a><b>create</b>(params = {}, push = true)
+                    <a name="M000017"></a><b>create</b>(params = {}, push = true)
                     
                 </div>
                 
@@ -250,12 +250,12 @@ Create a new APN
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/3d02fbec47b9a98d66ff4ca5bfff22fe67d6c7b0/lib/apnd/notification.rb#L72" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000015_source" class="dyn-source">
+                    <div id="M000017_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/notification.rb, line 72</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">params</span> = {}, <span class="ruby-identifier">push</span> = <span class="ruby-keyword kw">true</span>)
       <span class="ruby-identifier">notification</span> = <span class="ruby-constant">Notification</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
@@ -268,9 +268,9 @@ Create a new APN
             </div>
             
             <div class="method">
-                <div class="title" id="M000021">
+                <div class="title" id="M000024">
                     
-                    <a name="M000021"></a><b>new</b>(params = {})
+                    <a name="M000024"></a><b>new</b>(params = {})
                     
                 </div>
                 
@@ -287,12 +287,12 @@ hash
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000021_source')" id="l_M000021_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/3d02fbec47b9a98d66ff4ca5bfff22fe67d6c7b0/lib/apnd/notification.rb#L127" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000021_source" class="dyn-source">
+                    <div id="M000024_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/notification.rb, line 127</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span> = {})
       <span class="ruby-ivar">@token</span>  = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:token</span>]
@@ -307,9 +307,9 @@ hash
             </div>
             
             <div class="method">
-                <div class="title" id="M000014">
+                <div class="title" id="M000015">
                     
-                    <a name="M000014"></a><b>open_upstream_socket</b>(&amp;block)
+                    <a name="M000015"></a><b>open_upstream_socket</b>(&amp;block)
                     
                 </div>
                 
@@ -325,12 +325,12 @@ Opens a new socket upstream, yields it, and closes it
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000015_source')" id="l_M000015_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/3d02fbec47b9a98d66ff4ca5bfff22fe67d6c7b0/lib/apnd/notification.rb#L63" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000014_source" class="dyn-source">
+                    <div id="M000015_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/notification.rb, line 63</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">open_upstream_socket</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
       <span class="ruby-identifier">socket</span> = <span class="ruby-identifier">upstream_socket</span>
@@ -343,9 +343,9 @@ Opens a new socket upstream, yields it, and closes it
             </div>
             
             <div class="method">
-                <div class="title" id="M000017">
+                <div class="title" id="M000019">
                     
-                    <a name="M000017"></a><b>parse</b>(data)
+                    <a name="M000019"></a><b>parse</b>(data)
                     
                 </div>
                 
@@ -361,12 +361,12 @@ Parse raw data into a new <a href="Notification.html">Notification</a>
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000017_source')" id="l_M000017_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000019_source')" id="l_M000019_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/3d02fbec47b9a98d66ff4ca5bfff22fe67d6c7b0/lib/apnd/notification.rb#L91" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000017_source" class="dyn-source">
+                    <div id="M000019_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/notification.rb, line 91</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">data</span>)
       <span class="ruby-identifier">buffer</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">dup</span>
@@ -406,9 +406,9 @@ Parse raw data into a new <a href="Notification.html">Notification</a>
             </div>
             
             <div class="method">
-                <div class="title" id="M000013">
+                <div class="title" id="M000014">
                     
-                    <a name="M000013"></a><b>upstream_socket</b>()
+                    <a name="M000014"></a><b>upstream_socket</b>()
                     
                 </div>
                 
@@ -426,12 +426,12 @@ href="Notification.html#upstream_port">upstream_port</a>
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000013_source')" id="l_M000013_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000014_source')" id="l_M000014_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/3d02fbec47b9a98d66ff4ca5bfff22fe67d6c7b0/lib/apnd/notification.rb#L56" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000013_source" class="dyn-source">
+                    <div id="M000014_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/notification.rb, line 56</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">upstream_socket</span>
       <span class="ruby-ivar">@socket</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">TCPSocket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">upstream_host</span>, <span class="ruby-identifier">upstream_port</span>)
@@ -442,9 +442,9 @@ href="Notification.html#upstream_port">upstream_port</a>
             </div>
             
             <div class="method">
-                <div class="title" id="M000016">
+                <div class="title" id="M000018">
                     
-                    <a name="M000016"></a><b>valid?</b>(data)
+                    <a name="M000018"></a><b>valid?</b>(data)
                     
                 </div>
                 
@@ -462,12 +462,12 @@ validate incoming data
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000016_source')" id="l_M000016_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000018_source')" id="l_M000018_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/3d02fbec47b9a98d66ff4ca5bfff22fe67d6c7b0/lib/apnd/notification.rb#L82" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000016_source" class="dyn-source">
+                    <div id="M000018_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/notification.rb, line 82</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">valid?</span>(<span class="ruby-identifier">data</span>)
       <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">data</span>)
@@ -482,9 +482,9 @@ validate incoming data
             <div class="sectiontitle">Instance Public methods</div>
             
             <div class="method">
-                <div class="title" id="M000023">
+                <div class="title" id="M000026">
                     
-                    <a name="M000023"></a><b>aps</b>()
+                    <a name="M000026"></a><b>aps</b>()
                     
                 </div>
                 
@@ -500,12 +500,12 @@ aps hash sent to Apple
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000023_source')" id="l_M000023_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000026_source')" id="l_M000026_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/3d02fbec47b9a98d66ff4ca5bfff22fe67d6c7b0/lib/apnd/notification.rb#L145" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000023_source" class="dyn-source">
+                    <div id="M000026_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/notification.rb, line 145</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">aps</span>
       <span class="ruby-identifier">aps</span> = {}
@@ -565,9 +565,9 @@ Returns the Notification&#8217;s aps hash as json
             </div>
             
             <div class="method">
-                <div class="title" id="M000022">
+                <div class="title" id="M000025">
                     
-                    <a name="M000022"></a><b>hex_token</b>()
+                    <a name="M000025"></a><b>hex_token</b>()
                     
                 </div>
                 
@@ -583,12 +583,12 @@ Token in hex format
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000022_source')" id="l_M000022_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000025_source')" id="l_M000025_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/3d02fbec47b9a98d66ff4ca5bfff22fe67d6c7b0/lib/apnd/notification.rb#L138" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000022_source" class="dyn-source">
+                    <div id="M000025_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/notification.rb, line 138</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hex_token</span>
       [<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">token</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">' '</span>)].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'H*'</span>)
