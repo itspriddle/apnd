@@ -86,7 +86,7 @@ persistent connection between <a href="../../APND.html">APND</a> and Apple
         <dd>
             <ul>
                 
-                <li><a href="#M000007">open</a></li>
+                <li><a href="#M000004">open</a></li>
                 
             </ul>
         </dd>
@@ -95,7 +95,7 @@ persistent connection between <a href="../../APND.html">APND</a> and Apple
         <dd>
             <ul>
                 
-                <li><a href="#M000008">write</a></li>
+                <li><a href="#M000005">write</a></li>
                 
             </ul>
         </dd>
@@ -292,9 +292,9 @@ Close connection
             </div>
             
             <div class="method">
-                <div class="title" id="M000007">
+                <div class="title" id="M000004">
                     
-                    <a name="M000007"></a><b>open</b>(&amp;block)
+                    <a name="M000004"></a><b>open</b>(&amp;block)
                     
                 </div>
                 
@@ -313,12 +313,12 @@ Ex: open { |conn| conn.write(&#8216;write to socket) }
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000004_source')" id="l_M000004_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/0fb404a6757fae1b2a43dfef241df83c30618c99/lib/apnd/daemon/apple_connection.rb#L61" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000007_source" class="dyn-source">
+                    <div id="M000004_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/apple_connection.rb, line 61</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">open</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">connected?</span>
@@ -333,9 +333,9 @@ Ex: open { |conn| conn.write(&#8216;write to socket) }
             </div>
             
             <div class="method">
-                <div class="title" id="M000008">
+                <div class="title" id="M000005">
                     
-                    <a name="M000008"></a><b>write</b>(raw)
+                    <a name="M000005"></a><b>write</b>(raw)
                     
                 </div>
                 
@@ -351,12 +351,12 @@ Write to the connection socket
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000008_source')" id="l_M000008_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000005_source')" id="l_M000005_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/0fb404a6757fae1b2a43dfef241df83c30618c99/lib/apnd/daemon/apple_connection.rb#L72" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000008_source" class="dyn-source">
+                    <div id="M000005_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/apple_connection.rb, line 72</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write</span>(<span class="ruby-identifier">raw</span>)
       <span class="ruby-identifier">open</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">conn</span><span class="ruby-operator">|</span> <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">raw</span>) }
