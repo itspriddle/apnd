@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>APND::Daemon</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            APND::Daemon 
+            
+                <span class="parent">&lt; 
+                    
+                    Object
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/lib/apnd/daemon_rb.html">lib/apnd/daemon.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+The <a href="Daemon.html">APND::Daemon</a> maintains a persistent secure
+connection with Apple, (<a
+href="Daemon/AppleConnection.html">APND::Daemon::AppleConnection</a>).
+Notifications are queued and periodically writen to the <a
+href="Daemon/AppleConnection.html">AppleConnection</a>
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000010">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000009">run!</a>,</li>
+                
+                <li><a href="#M000011">run!</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">CLASS</span> <a href="Daemon/AppleConnection.html">APND::Daemon::AppleConnection</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Daemon/Protocol.html">APND::Daemon::Protocol</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000010">
+                    
+                    <a name="M000010"></a><b>new</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Create a connection to Apple and a new EM queue
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show</a>
+                        
+                        | <a href="http://github.com/itspriddle/apnd/blob/e59a4cac522a7b16bec936ce34a8ad35a912d0cb/lib/apnd/daemon.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M000010_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 24</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+      <span class="ruby-ivar">@queue</span> = <span class="ruby-constant">EM</span><span class="ruby-operator">::</span><span class="ruby-constant">Queue</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-ivar">@apple</span> = <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span><span class="ruby-operator">::</span><span class="ruby-constant">AppleConnection</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-ivar">@bind</span>  = <span class="ruby-constant">APND</span>.<span class="ruby-identifier">settings</span>.<span class="ruby-identifier">daemon</span>.<span class="ruby-identifier">bind</span>
+      <span class="ruby-ivar">@port</span>  = <span class="ruby-constant">APND</span>.<span class="ruby-identifier">settings</span>.<span class="ruby-identifier">daemon</span>.<span class="ruby-identifier">port</span>
+      <span class="ruby-ivar">@timer</span> = <span class="ruby-constant">APND</span>.<span class="ruby-identifier">settings</span>.<span class="ruby-identifier">daemon</span>.<span class="ruby-identifier">timer</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000009">
+                    
+                    <a name="M000009"></a><b>run!</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Create a new <a href="Daemon.html">Daemon</a> and run it
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000009_source')" id="l_M000009_source">show</a>
+                        
+                        | <a href="http://github.com/itspriddle/apnd/blob/e59a4cac522a7b16bec936ce34a8ad35a912d0cb/lib/apnd/daemon.rb#L16" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M000009_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 16</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">run!</span>
+      <span class="ruby-identifier">server</span> = <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">server</span>.<span class="ruby-identifier">run!</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000011">
+                    
+                    <a name="M000011"></a><b>run!</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Run the daemon
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show</a>
+                        
+                        | <a href="http://github.com/itspriddle/apnd/blob/e59a4cac522a7b16bec936ce34a8ad35a912d0cb/lib/apnd/daemon.rb#L35" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M000011_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 35</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run!</span>
+      <span class="ruby-constant">EventMachine</span><span class="ruby-operator">::</span><span class="ruby-identifier">run</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">ohai</span> <span class="ruby-node">&quot;Starting APND Daemon on #{@bind}:#{@port}&quot;</span>
+        <span class="ruby-constant">EventMachine</span><span class="ruby-operator">::</span><span class="ruby-identifier">start_server</span>(<span class="ruby-ivar">@bind</span>, <span class="ruby-ivar">@port</span>, <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span><span class="ruby-operator">::</span><span class="ruby-constant">Protocol</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">server</span>.<span class="ruby-identifier">queue</span> = <span class="ruby-ivar">@queue</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-constant">EventMachine</span><span class="ruby-operator">::</span><span class="ruby-constant">PeriodicTimer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@timer</span>) <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">process_notifications!</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>README.markdown</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+    <script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            README.markdown
+        </h1>
+        <ul class="files">
+            <li>README.markdown</li>
+            <li>Last modified: Sat Oct 02 13:28:03 -0400 2010</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <h1>APND</h1>
+
+<p>APND (Apple Push Notification Daemon) is a ruby library to send Apple Push
+Notifications to iPhones.</p>
+
+<p>Apple recommends application developers create one connection to their
+upstream push notification server, rather than creating one per notification.</p>
+
+<p>APND acts as an intermediary between your application and Apple (see <strong>APND
+Daemon</strong> below). Your application's notifications are queued to APND, which
+are then sent to Apple over a single connection.</p>
+
+<p>Within ruby applications, <code>APND::Notification</code> can be used to send
+notifications to a running APND instance (see <strong>APND Notification</strong> below) or
+directly to Apple. A command line utility, <code>apnd-push</code>, can be used to send
+single notifications for testing purposes (see <strong>APND Client</strong> below).</p>
+
+<h2>General Usage</h2>
+
+<h3>APND Daemon</h3>
+
+<p>APND receives push notifications from your application and relays them to
+Apple over a single connection as explained above. The <code>apnd</code> command line
+utility is used to start APND.</p>
+
+<pre><code>Usage:
+  apnd [OPTIONS] --apple-cert &lt;/path/to/cert&gt;
+
+Required Arguments:
+        --apple-cert      [PATH]     PATH to APN certificate from Apple
+
+Optional Arguments:
+        --apple-host      [HOST]     Connect to Apple at HOST (default is gateway.sandbox.push.apple.com)
+        --apple-port      [PORT]     Connect to Apple on PORT (default is 2195)
+        --apple-cert-pass [PASSWORD] PASSWORD for APN certificate from Apple
+        --daemon-port     [PORT]     Run APND on PORT (default is 22195)
+        --daemon-bind     [ADDRESS]  Bind APND to ADDRESS (default is 0.0.0.0)
+        --daemon-log-file [PATH]     PATH to APND log file (default is /var/log/apnd.log)
+        --daemon-timer    [SECONDS]  Set APND queue refresh time to SECONDS (default is 30)
+        --foreground                 Run APND in foreground without daemonizing
+
+Help:
+        --version                    Show version
+        --help                       Show this message
+</code></pre>
+
+<h3>APND Client</h3>
+
+<p>APND includes a command line utility, <code>apnd-push</code>, which can be used to send
+notifications to a running APND instance, or Apple directly. It is only
+recommended to send notifications directly to Apple for testing purposes.</p>
+
+<pre><code>Usage:
+  apnd-push [OPTIONS] --token &lt;token&gt; --alert &lt;alert&gt;
+
+Required Arguments:
+        --token  [TOKEN]             Set Notification's iPhone token to TOKEN
+        --alert  [MESSAGE]           Set Notification's alert to MESSAGE
+
+Optional Arguments:
+        --sound  [SOUND]             Set Notification's sound to SOUND (default is 'default')
+        --badge  [NUMBER]            Set Notification's badge number to NUMBER
+        --custom [JSON]              Set Notification's custom data to JSON
+        --host   [HOST]              Send Notification to HOST, usually the one running APND (default is 'localhost')
+        --port   [PORT]              Send Notification on PORT (default is 22195)
+
+Help:
+        --version                    Show version
+        --help                       Show this message
+</code></pre>
+
+<h3>APND Notification</h3>
+
+<p>The <code>APND::Notification</code> class can be used within your application to send
+push notifications to APND.</p>
+
+<pre><code>require 'apnd'
+
+# Set the host/port APND is running on
+# (not needed if you're using localhost:22195)
+
+APND::Notification.upstream_host = 'localhost'
+APND::Notification.upstream_port = 22195
+
+notification = APND::Notification.create(
+  :alert  =&gt; 'Alert!',
+  :token  =&gt; 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
+  :badge  =&gt; 99
+)
+</code></pre>
+
+<h2>Prerequisites</h2>
+
+<p>You must have a valid Apple Push Notification Certificate for your iPhone
+application. Obtain your APN certificate from the iPhone Provisioning Portal
+at <a href="http://developer.apple.com/">developer.apple.com</a>.</p>
+
+<h2>Requirements</h2>
+
+<ul>
+<li><a href="http://github.com/eventmachine/eventmachine">EventMachine</a></li>
+<li><a href="http://github.com/ghazel/daemons">Daemons</a></li>
+<li><a href="http://github.com/flori/json">JSON</a></li>
+</ul>
+
+
+<p>Ruby must be compiled with OpenSSL support.</p>
+
+<h2>Installation</h2>
+
+<p>RubyGems:</p>
+
+<pre><code>gem install apnd
+</code></pre>
+
+<p>Git:</p>
+
+<pre><code>git clone git://github.com/itspriddle/apnd.git
+</code></pre>
+
+<h2>Credit</h2>
+
+<p>APND is based on <a href="http://github.com/bpoweski/apnserver">apnserver</a> and
+<a href="http://github.com/PRX/apn_on_rails">apn_on_rails</a>. Either worked just how I
+wanted, so I rolled my own using theirs as starting points. If APND doesn't
+suit you, check them out instead.</p>
+
+<h2>Copyright</h2>
+
+<p>Copyright (c) 2010 Joshua Priddle. See LICENSE for details.</p>
+<script type="text/javascript">$(function() {
+  $('a').each(function() { $(this).attr('target', '_blank') })
+})</script>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+    </div>
+  </body>
+</html>
