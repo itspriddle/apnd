@@ -7,14 +7,64 @@ module APND
   class Notification
 
     class << self
+      #
+      # The host notifications will be written to, usually one
+      # running APND
+      #
       attr_accessor :upstream_host
+
+      #
+      # The port to connect to upstream_host on
+      #
       attr_accessor :upstream_port
     end
 
+    #
+    # Set upstream host/port to default values
+    #
     self.upstream_host = APND.settings.notification.host
     self.upstream_port = APND.settings.notification.port.to_i
 
-    attr_accessor :token, :alert, :badge, :sound, :custom
+    #
+    # The device token from Apple
+    #
+    attr_accessor :token
+
+    #
+    # The alert to send
+    #
+    attr_accessor :alert
+
+    #
+    # The badge number to set
+    #
+    attr_accessor :badge
+
+    #
+    # The sound to play
+    #
+    attr_accessor :sound
+
+    #
+    # Custom data to send
+    #
+    attr_accessor :custom
+
+    #
+    # Creates a new socket to upstream_host:upstream_port
+    #
+    def self.upstream_socket
+      @socket ||= TCPSocket.new(upstream_host, upstream_port)
+    end
+
+    #
+    # Opens a new socket upstream, yields it, and closes it
+    #
+    def self.open_upstream_socket(&block)
+      socket = upstream_socket
+      yield socket
+      socket.close
+    end
 
     #
     # Create a new APN
@@ -112,9 +162,7 @@ module APND
     # Pushes notification to upstream host:port (default is localhost:22195)
     #
     def push!
-      socket = TCPSocket.new(self.class.upstream_host, self.class.upstream_port)
-      socket.write(to_bytes)
-      socket.close
+      self.class.open_upstream_socket { |sock| sock.write(to_bytes) }
     end
 
     #
