@@ -1,7 +1,7 @@
 # APND
 
 APND (Apple Push Notification Daemon) is a ruby library to send Apple Push
-Notifications (APNs) to iPhones.
+Notifications to iPhones.
 
 Apple recommends application developers create one connection to their
 upstream push notification server, rather than creating one per notification.
