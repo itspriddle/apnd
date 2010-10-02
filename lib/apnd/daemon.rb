@@ -40,21 +40,30 @@ module APND
         end
 
         EventMachine::PeriodicTimer.new(@timer) do
-          count = @queue.size
-          if count > 0
-            ohai "Queue has #{count} item#{count == 1 ? '' : 's'}"
-            count.times do
-              @queue.pop do |notification|
-                begin
-                  ohai "Sending notification"
-                  @apple.write(notification.to_bytes)
-                rescue Errno::EPIPE, OpenSSL::SSL::SSLError
-                  ohai "Error, notification has been added back to the queue"
-                  @queue.push(notification)
-                rescue RuntimeError => error
-                  ohai "Error: #{error}"
-                end
-              end
+          process_notifications!
+        end
+      end
+    end
+
+  private
+
+    #
+    # Sends each notification in the queue upstream to Apple
+    #
+    def process_notifications!
+      count = @queue.size
+      if count > 0
+        ohai "Queue has #{count} item#{count == 1 ? '' : 's'}"
+        count.times do
+          @queue.pop do |notification|
+            begin
+              ohai "Sending notification"
+              @apple.write(notification.to_bytes)
+            rescue Errno::EPIPE, OpenSSL::SSL::SSLError
+              ohai "Error, notification has been added back to the queue"
+              @queue.push(notification)
+            rescue RuntimeError => error
+              ohai "Error: #{error}"
             end
           end
         end
