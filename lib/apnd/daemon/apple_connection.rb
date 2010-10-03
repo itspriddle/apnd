@@ -54,6 +54,13 @@ module APND
     end
 
     #
+    # Disconnect/connect to Apple
+    #
+    def reconnect!
+      disconnect! && connect!
+    end
+
+    #
     # Establishes a connection if needed and yields it
     #
     # Ex: open { |conn| conn.write('write to socket) }

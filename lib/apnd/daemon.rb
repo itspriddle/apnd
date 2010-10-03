@@ -62,6 +62,7 @@ module APND
             rescue Errno::EPIPE, OpenSSL::SSL::SSLError
               ohai "Error, notification has been added back to the queue"
               @queue.push(notification)
+              @apple.reconnect!
             rescue RuntimeError => error
               ohai "Error: #{error}"
             end
