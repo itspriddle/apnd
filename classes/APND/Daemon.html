@@ -60,7 +60,7 @@ href="Daemon/AppleConnection.html">AppleConnection</a>
         <dd>
             <ul>
                 
-                <li><a href="#M000010">new</a></li>
+                <li><a href="#M000011">new</a></li>
                 
             </ul>
         </dd>
@@ -69,9 +69,9 @@ href="Daemon/AppleConnection.html">AppleConnection</a>
         <dd>
             <ul>
                 
-                <li><a href="#M000009">run!</a>,</li>
+                <li><a href="#M000010">run!</a>,</li>
                 
-                <li><a href="#M000011">run!</a></li>
+                <li><a href="#M000012">run!</a></li>
                 
             </ul>
         </dd>
@@ -102,9 +102,9 @@ href="Daemon/AppleConnection.html">AppleConnection</a>
             <div class="sectiontitle">Class Public methods</div>
             
             <div class="method">
-                <div class="title" id="M000010">
+                <div class="title" id="M000011">
                     
-                    <a name="M000010"></a><b>new</b>()
+                    <a name="M000011"></a><b>new</b>()
                     
                 </div>
                 
@@ -120,12 +120,12 @@ Create a connection to Apple and a new EM queue
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/e59a4cac522a7b16bec936ce34a8ad35a912d0cb/lib/apnd/daemon.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/95154a01c6464531ad4a8f0b450b184f7e61e136/lib/apnd/daemon.rb#L24" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000010_source" class="dyn-source">
+                    <div id="M000011_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 24</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
       <span class="ruby-ivar">@queue</span> = <span class="ruby-constant">EM</span><span class="ruby-operator">::</span><span class="ruby-constant">Queue</span>.<span class="ruby-identifier">new</span>
@@ -140,9 +140,9 @@ Create a connection to Apple and a new EM queue
             </div>
             
             <div class="method">
-                <div class="title" id="M000009">
+                <div class="title" id="M000010">
                     
-                    <a name="M000009"></a><b>run!</b>()
+                    <a name="M000010"></a><b>run!</b>()
                     
                 </div>
                 
@@ -158,12 +158,12 @@ Create a new <a href="Daemon.html">Daemon</a> and run it
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000009_source')" id="l_M000009_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/e59a4cac522a7b16bec936ce34a8ad35a912d0cb/lib/apnd/daemon.rb#L16" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/95154a01c6464531ad4a8f0b450b184f7e61e136/lib/apnd/daemon.rb#L16" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000009_source" class="dyn-source">
+                    <div id="M000010_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 16</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">run!</span>
       <span class="ruby-identifier">server</span> = <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span>.<span class="ruby-identifier">new</span>
@@ -177,9 +177,9 @@ Create a new <a href="Daemon.html">Daemon</a> and run it
             <div class="sectiontitle">Instance Public methods</div>
             
             <div class="method">
-                <div class="title" id="M000011">
+                <div class="title" id="M000012">
                     
-                    <a name="M000011"></a><b>run!</b>()
+                    <a name="M000012"></a><b>run!</b>()
                     
                 </div>
                 
@@ -195,12 +195,12 @@ Run the daemon
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/e59a4cac522a7b16bec936ce34a8ad35a912d0cb/lib/apnd/daemon.rb#L35" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/95154a01c6464531ad4a8f0b450b184f7e61e136/lib/apnd/daemon.rb#L35" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000011_source" class="dyn-source">
+                    <div id="M000012_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 35</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run!</span>
       <span class="ruby-constant">EventMachine</span><span class="ruby-operator">::</span><span class="ruby-identifier">run</span> <span class="ruby-keyword kw">do</span>
