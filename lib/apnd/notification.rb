@@ -54,7 +54,7 @@ module APND
     # Creates a new socket to upstream_host:upstream_port
     #
     def self.upstream_socket
-      @socket ||= TCPSocket.new(upstream_host, upstream_port)
+      @socket = TCPSocket.new(upstream_host, upstream_port)
     end
 
     #
