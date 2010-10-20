@@ -54,6 +54,7 @@ module APND
       count = @queue.size
       if count > 0
         ohai "Queue has #{count} item#{count == 1 ? '' : 's'}"
+        @apple.connect!
         count.times do
           @queue.pop do |notification|
             begin
@@ -68,6 +69,7 @@ module APND
             end
           end
         end
+        @apple.disconnect!
       end
     end
 
