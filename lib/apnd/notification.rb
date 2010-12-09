@@ -81,8 +81,6 @@ module APND
     #
     def self.valid?(data)
       parse(data)
-    rescue
-      false
     end
 
     #
@@ -119,6 +117,8 @@ module APND
       end
 
       notification
+    rescue
+      false
     end
 
     #
