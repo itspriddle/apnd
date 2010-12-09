@@ -31,7 +31,7 @@ context "APND" do
     assert ! APND::Notification.parse("I'm not a packet!")
   end
 
-  test "Notification multiple apns to be sent" do
+  test "Packet can contain multiple Notifications" do
     notifications = [@bytes, @bytes, @bytes].join("\n")
     notifications.each_line do |line|
       assert APND::Notification.valid?(line)
