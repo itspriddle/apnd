@@ -1,3 +1,5 @@
+$:.unshift 'lib'
+
 require 'rubygems'
 
 task :default => :test
