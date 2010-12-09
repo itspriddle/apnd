@@ -1,40 +1,69 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-context "APND" do
-  setup do
-    @bytes = %|\000\000 \376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202";\345\237\266\205\000\251\242\000;{"aps":{"sound":"default","alert":"Red Alert, Numba One!"}}|
-    @notification = APND::Notification.new({
-      :token => 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
-      :alert => 'Red Alert, Numba One!',
-      :sound => 'default'
-    })
-  end
+class APNDTest < Test::Unit::TestCase
+  @@bytes = %|\000\000 \376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202\";\345\237\266\205\000\251\242\000\\{\"location\":\"New York\",\"aps\":{\"badge\":10,\"sound\":\"default\",\"alert\":\"Red Alert, Numba One!\"}}|
 
-  test "Notification returns a valid hex_token" do
-    expected = %|\376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202";\345\237\266\205\000\251\242|
-    assert_equal @notification.hex_token, expected
-  end
-
-  test "Notification returns a valid byte string for Apple" do
-    assert_equal @notification.to_bytes, @bytes
-  end
-
-  test "Notification.parse returns a Notification when given a valid string" do
-    notification = APND::Notification.parse(@bytes)
-
-    assert notification
-
-    [:alert, :badge, :custom, :sound, :token, :hex_token, :to_bytes, :aps, :aps_json].each do |key|
-      assert_equal @notification.send(key), notification.send(key)
+  context "APND Notification" do
+    setup do
+      @notification = APND::Notification.new({
+        :token  => 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
+        :alert  => 'Red Alert, Numba One!',
+        :sound  => 'default',
+        :badge  => 10,
+        :custom => { 'location' => 'New York' }
+      })
     end
 
-    assert ! APND::Notification.parse("I'm not a packet!")
+    context "instances" do
+      should "be initialized with a hash of options" do
+        [:token, :alert, :sound, :badge, :custom].each do |key|
+          assert_not_nil @notification.send(key)
+        end
+      end
+
+      should "return a valid hex_token" do
+        expected = %|\376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202";\345\237\266\205\000\251\242|
+        assert_equal @notification.hex_token, expected
+      end
+
+      should "return a valid byte string" do
+        assert_equal @notification.to_bytes, @@bytes
+      end
+    end
+
+    should "parse a valid packet" do
+      notification = APND::Notification.parse(@@bytes)
+
+      assert notification
+
+      [:alert, :badge, :custom, :sound, :token, :hex_token, :to_bytes, :aps, :aps_json].each do |key|
+        assert_equal @notification.send(key), notification.send(key)
+      end
+    end
+
+    should "raise InvalidNotificationHeader parsing a bad packet" do
+      assert_raise APND::Errors::InvalidNotificationHeader do
+        APND::Notification.parse("I'm not a packet!")
+      end
+    end
+
+    should "raise InvalidPayload if custom hash is too large" do
+      assert_raise APND::Errors::InvalidPayload do
+        notification = @notification.dup
+        notification.custom = {
+          'lorem' => "Hi! " * 200
+        }
+        APND::Notification.parse(notification.to_bytes)
+      end
+    end
   end
 
-  test "Packet can contain multiple Notifications" do
-    notifications = [@bytes, @bytes, @bytes].join("\n")
-    notifications.each_line do |line|
-      assert APND::Notification.valid?(line)
+  context "APND Daemon" do
+    should "receive multiple Notifications in a single packet" do
+      notifications = [@@bytes, @@bytes, @@bytes].join("\n")
+      notifications.each_line do |line|
+        assert APND::Notification.valid?(line)
+      end
     end
   end
 
