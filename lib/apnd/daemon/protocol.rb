@@ -29,11 +29,13 @@ module APND
     #
     def receive_data(data)
       (@buffer ||= "") << data
-      if notification = APND::Notification.valid?(@buffer)
-        ohai "#{@address.last}:#{@address.first} added new Notification to queue"
-        queue.push(notification)
-      else
-        ohai "#{@address.last}:#{@address.first} submitted invalid Notification"
+      @buffer.each_line do |line|
+        if notification = APND::Notification.valid?(line)
+          ohai "#{@address.last}:#{@address.first} added new Notification to queue"
+          queue.push(notification)
+        else
+          ohai "#{@address.last}:#{@address.first} submitted invalid Notification"
+        end
       end
     end
   end
