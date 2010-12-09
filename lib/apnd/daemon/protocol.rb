@@ -25,7 +25,7 @@ module APND
     end
 
     #
-    # Add incoming notification to the queue if it is valid
+    # Add incoming notification(s) to the queue
     #
     def receive_data(data)
       (@buffer ||= "") << data
