@@ -7,6 +7,11 @@ $LOAD_PATH.unshift(dir)
 
 require 'apnd'
 
+begin
+  require 'turn'
+rescue LoadError
+end
+
 ##
 # test/spec/mini 3
 # http://gist.github.com/25455
