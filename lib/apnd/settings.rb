@@ -112,6 +112,18 @@ module APND
     end
 
     #
+    # Mass assign AppleConnection settings
+    #
+    def apple=(options = {})
+      if options.respond_to?(:keys)
+        apple.cert      = options[:cert]      if options[:cert]
+        apple.cert_pass = options[:cert_pass] if options[:cert_pass]
+        apple.host      = options[:host]      if options[:host]
+        apple.port      = options[:port]      if options[:port]
+      end
+    end
+
+    #
     # Returns the Daemon settings
     #
     def daemon
@@ -119,10 +131,32 @@ module APND
     end
 
     #
+    # Mass assign Daemon settings
+    #
+    def daemon=(options = {})
+      if options.respond_to?(:keys)
+        daemon.bind     = options[:bind]     if options[:bind]
+        daemon.port     = options[:port]     if options[:port]
+        daemon.log_file = options[:log_file] if options[:log_file]
+        daemon.timer    = options[:timer]    if options[:timer]
+      end
+    end
+
+    #
     # Returns the Notification settings
     #
     def notification
       @notification ||= APND::Settings::Notification.new
+    end
+
+    #
+    # Mass assign Notification settings
+    #
+    def notification=(options = {})
+      if options.respond_to?(:keys)
+        notification.port = options[:port] if options[:port]
+        notification.host = options[:host] if options[:host]
+      end
     end
   end
 end
