@@ -22,6 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency('json',         '= 1.4.6')
   s.add_dependency('daemons',      '= 1.1.0')
 
+  s.add_development_dependency('shoulda')
+
   s.extra_rdoc_files = ['README.markdown']
   s.rdoc_options     = ["--charset=UTF-8"]
 
