@@ -128,7 +128,7 @@ module APND
       @token  = params[:token]
       @alert  = params[:alert]
       @badge  = params[:badge]
-      @sound  = params[:sound] || 'default'
+      @sound  = params[:sound]
       @custom = params[:custom]
     end
 
