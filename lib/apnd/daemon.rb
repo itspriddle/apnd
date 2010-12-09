@@ -58,7 +58,7 @@ module APND
         count.times do
           @queue.pop do |notification|
             begin
-              ohai "Sending notification"
+              ohai "Sending notification for #{notification.token}"
               @apple.write(notification.to_bytes)
             rescue Errno::EPIPE, OpenSSL::SSL::SSLError
               ohai "Error, notification has been added back to the queue"
