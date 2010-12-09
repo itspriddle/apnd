@@ -81,6 +81,8 @@ module APND
     #
     def self.valid?(data)
       parse(data)
+    rescue
+      false
     end
 
     #
@@ -93,7 +95,7 @@ module APND
       header = buffer.slice!(0, 3).unpack('ccc')
 
       if header[0] != 0
-        raise RuntimeError, "Invalid Notification header: #{header.inspect}"
+        raise APND::Errors::InvalidNotificationHeader.new(header)
       end
 
       notification.token = buffer.slice!(0, 32).unpack('H*').first
@@ -117,8 +119,6 @@ module APND
       end
 
       notification
-    rescue
-      false
     end
 
     #
@@ -171,7 +171,7 @@ module APND
     def aps_json
       return @aps_json if @aps_json
       json = aps.to_json
-      raise APND::InvalidPayload.new(json) if json.size > 256
+      raise APND::Errors::InvalidPayload.new(json) if json.size > 256
       @aps_json = json
     end
 
