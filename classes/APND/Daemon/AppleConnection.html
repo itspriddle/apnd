@@ -86,7 +86,7 @@ persistent connection between <a href="../../APND.html">APND</a> and Apple
         <dd>
             <ul>
                 
-                <li><a href="#M000007">open</a></li>
+                <li><a href="#M000005">open</a></li>
                 
             </ul>
         </dd>
@@ -95,7 +95,7 @@ persistent connection between <a href="../../APND.html">APND</a> and Apple
         <dd>
             <ul>
                 
-                <li><a href="#M000006">reconnect!</a></li>
+                <li><a href="#M000004">reconnect!</a></li>
                 
             </ul>
         </dd>
@@ -104,7 +104,7 @@ persistent connection between <a href="../../APND.html">APND</a> and Apple
         <dd>
             <ul>
                 
-                <li><a href="#M000009">write</a></li>
+                <li><a href="#M000006">write</a></li>
                 
             </ul>
         </dd>
@@ -301,9 +301,9 @@ Close connection
             </div>
             
             <div class="method">
-                <div class="title" id="M000007">
+                <div class="title" id="M000005">
                     
-                    <a name="M000007"></a><b>open</b>(&amp;block)
+                    <a name="M000005"></a><b>open</b>(&amp;block)
                     
                 </div>
                 
@@ -322,12 +322,12 @@ Ex: open { |conn| conn.write(&#8216;write to socket) }
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000005_source')" id="l_M000005_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/95154a01c6464531ad4a8f0b450b184f7e61e136/lib/apnd/daemon/apple_connection.rb#L68" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000007_source" class="dyn-source">
+                    <div id="M000005_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/apple_connection.rb, line 68</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">open</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">connected?</span>
@@ -342,9 +342,9 @@ Ex: open { |conn| conn.write(&#8216;write to socket) }
             </div>
             
             <div class="method">
-                <div class="title" id="M000006">
+                <div class="title" id="M000004">
                     
-                    <a name="M000006"></a><b>reconnect!</b>()
+                    <a name="M000004"></a><b>reconnect!</b>()
                     
                 </div>
                 
@@ -360,12 +360,12 @@ Disconnect/connect to Apple
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000006_source')" id="l_M000006_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000004_source')" id="l_M000004_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/95154a01c6464531ad4a8f0b450b184f7e61e136/lib/apnd/daemon/apple_connection.rb#L59" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000006_source" class="dyn-source">
+                    <div id="M000004_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/apple_connection.rb, line 59</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reconnect!</span>
       <span class="ruby-identifier">disconnect!</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">connect!</span>
@@ -376,9 +376,9 @@ Disconnect/connect to Apple
             </div>
             
             <div class="method">
-                <div class="title" id="M000009">
+                <div class="title" id="M000006">
                     
-                    <a name="M000009"></a><b>write</b>(raw)
+                    <a name="M000006"></a><b>write</b>(raw)
                     
                 </div>
                 
@@ -394,12 +394,12 @@ Write to the connection socket
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000009_source')" id="l_M000009_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000006_source')" id="l_M000006_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/95154a01c6464531ad4a8f0b450b184f7e61e136/lib/apnd/daemon/apple_connection.rb#L79" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000009_source" class="dyn-source">
+                    <div id="M000006_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/apple_connection.rb, line 79</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write</span>(<span class="ruby-identifier">raw</span>)
       <span class="ruby-identifier">open</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">conn</span><span class="ruby-operator">|</span> <span class="ruby-identifier">conn</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">raw</span>) }

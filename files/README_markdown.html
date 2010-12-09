@@ -19,7 +19,7 @@
         </h1>
         <ul class="files">
             <li>README.markdown</li>
-            <li>Last modified: Wed Dec 08 20:05:15 -0500 2010</li>
+            <li>Last modified: Thu Dec 09 00:53:13 -0500 2010</li>
         </ul>
     </div>
 
@@ -111,10 +111,30 @@ push notifications to APND.</p>
 APND::Notification.upstream_host = 'localhost'
 APND::Notification.upstream_port = 22195
 
-notification = APND::Notification.create(
+notification1 = APND::Notification.new(
   :alert  =&gt; 'Alert!',
   :token  =&gt; 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
+  :badge  =&gt; 1
+)
+
+notification2 = APND::Notification.new(
+  :alert  =&gt; 'Red Alert!',
+  :token  =&gt; 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
   :badge  =&gt; 99
+)
+
+# Send multiple notifications at once to avoid overhead in
+# opening/closing the upstream socket connection each time
+APND::Notification.open_upstream_socket do |sock|
+  sock.puts notification1
+  sock.puts notification2
+end
+
+# Send a notification to the upstream socket immediately
+notification3 = APND::Notification.create(
+  :alert  =&gt; 'Alert!',
+  :token  =&gt; 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
+  :badge  =&gt; 0
 )
 </code></pre>
 
@@ -134,6 +154,9 @@ at <a href="http://developer.apple.com/">developer.apple.com</a>.</p>
 
 
 <p>Ruby must be compiled with OpenSSL support.</p>
+
+<p>Tests use <a href="http://github.com/thoughtbot/shoulda">Shoulda</a>, and optionally
+<a href="https://github.com/TwP/turn">TURN</a>.</p>
 
 <h2>Installation</h2>
 
