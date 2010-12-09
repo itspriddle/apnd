@@ -83,11 +83,22 @@ push notifications to APND.
     APND::Notification.upstream_host = 'localhost'
     APND::Notification.upstream_port = 22195
 
-    notification = APND::Notification.create(
+    notification1 = APND::Notification.create(
       :alert  => 'Alert!',
+      :token  => 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
+      :badge  => 1
+    )
+
+    notification2 = APND::Notification.new(
+      :alert  => 'Red Alert!',
       :token  => 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
       :badge  => 99
     )
+
+    APND::Notification.open_upstream_socket do |sock|
+      sock.puts notification1
+      sock.puts notification2
+    end
 
 
 ## Prerequisites
