@@ -8,7 +8,7 @@ require 'optparse'
 
 help = <<HELP
 Usage:
-  apnd-push [OPTIONS] --token <token> --alert <alert>
+  apnd-push [OPTIONS] --token <token>
 
 HELP
 
@@ -23,13 +23,13 @@ opts = OptionParser.new do |opt|
     options[:token] = token
   end
 
+  opt.separator "\nOptional Arguments:\n"
+
   opt.on('--alert  [MESSAGE]', "Set Notification's alert to MESSAGE") do |alert|
     options[:alert] = alert
   end
 
-  opt.separator "\nOptional Arguments:\n"
-  
-  opt.on('--sound  [SOUND]', "Set Notification's sound to SOUND (default is 'default')") do |sound|
+  opt.on('--sound  [SOUND]', "Set Notification's sound to SOUND") do |sound|
     options[:sound] = sound
   end
 
@@ -74,8 +74,8 @@ begin
     exit
   end
 
-  unless options[:token] && options[:alert]
-    raise OptionParser::MissingArgument, "must specify --token and --alert"
+  unless options[:token]
+    raise OptionParser::MissingArgument, "must specify --token"
   end
 rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   puts "#{$0}: #{$!.message}"

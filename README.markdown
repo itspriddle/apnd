@@ -52,14 +52,14 @@ notifications to a running APND instance, or Apple directly. It is only
 recommended to send notifications directly to Apple for testing purposes.
 
     Usage:
-      apnd-push [OPTIONS] --token <token> --alert <alert>
+      apnd-push [OPTIONS] --token <token>
 
     Required Arguments:
             --token  [TOKEN]             Set Notification's iPhone token to TOKEN
-            --alert  [MESSAGE]           Set Notification's alert to MESSAGE
 
     Optional Arguments:
-            --sound  [SOUND]             Set Notification's sound to SOUND (default is 'default')
+            --alert  [MESSAGE]           Set Notification's alert to MESSAGE
+            --sound  [SOUND]             Set Notification's sound to SOUND
             --badge  [NUMBER]            Set Notification's badge number to NUMBER
             --custom [JSON]              Set Notification's custom data to JSON
             --host   [HOST]              Send Notification to HOST, usually the one running APND (default is 'localhost')
