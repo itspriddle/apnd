@@ -125,6 +125,9 @@ at [developer.apple.com](http://developer.apple.com/).
 
 Ruby must be compiled with OpenSSL support.
 
+Tests use [Shoulda](http://github.com/thoughtbot/shoulda), and optionally
+[TURN](https://github.com/TwP/turn).
+
 
 ## Installation
 
