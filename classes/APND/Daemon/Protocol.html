@@ -56,7 +56,7 @@
         <dd>
             <ul>
                 
-                <li><a href="#M000007">post_init</a></li>
+                <li><a href="#M000001">post_init</a></li>
                 
             </ul>
         </dd>
@@ -65,7 +65,7 @@
         <dd>
             <ul>
                 
-                <li><a href="#M000009">receive_data</a></li>
+                <li><a href="#M000005">receive_data</a></li>
                 
             </ul>
         </dd>
@@ -74,7 +74,7 @@
         <dd>
             <ul>
                 
-                <li><a href="#M000008">unbind</a></li>
+                <li><a href="#M000002">unbind</a></li>
                 
             </ul>
         </dd>
@@ -112,9 +112,9 @@ href="../Daemon.html">APND::Daemon</a>
             <div class="sectiontitle">Instance Public methods</div>
             
             <div class="method">
-                <div class="title" id="M000007">
+                <div class="title" id="M000001">
                     
-                    <a name="M000007"></a><b>post_init</b>()
+                    <a name="M000001"></a><b>post_init</b>()
                     
                 </div>
                 
@@ -130,12 +130,12 @@ Called when a client connection is opened
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000007_source')" id="l_M000007_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000001_source')" id="l_M000001_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/987b3e6032f58f2ab87a83b070e42d611f036ed2/lib/apnd/daemon/protocol.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/1bcb358a86324a0865fb2c2be9e0e7bbb64c7b0d/lib/apnd/daemon/protocol.rb#L15" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000007_source" class="dyn-source">
+                    <div id="M000001_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/protocol.rb, line 15</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post_init</span>
       <span class="ruby-ivar">@address</span> = <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">unpack_sockaddr_in</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get_peername</span>)
@@ -147,15 +147,15 @@ Called when a client connection is opened
             </div>
             
             <div class="method">
-                <div class="title" id="M000009">
+                <div class="title" id="M000005">
                     
-                    <a name="M000009"></a><b>receive_data</b>(data)
+                    <a name="M000005"></a><b>receive_data</b>(data)
                     
                 </div>
                 
                 <div class="description">
                   <p>
-Add incoming notification to the queue if it is valid
+Add incoming notification(s) to the queue
 </p>
 
                 </div>
@@ -165,20 +165,22 @@ Add incoming notification to the queue if it is valid
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000009_source')" id="l_M000009_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000005_source')" id="l_M000005_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/987b3e6032f58f2ab87a83b070e42d611f036ed2/lib/apnd/daemon/protocol.rb#L30" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/1bcb358a86324a0865fb2c2be9e0e7bbb64c7b0d/lib/apnd/daemon/protocol.rb#L30" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000009_source" class="dyn-source">
+                    <div id="M000005_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/protocol.rb, line 30</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">receive_data</span>(<span class="ruby-identifier">data</span>)
       (<span class="ruby-ivar">@buffer</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">&quot;&quot;</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">data</span>
-      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">notification</span> = <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Notification</span>.<span class="ruby-identifier">valid?</span>(<span class="ruby-ivar">@buffer</span>)
-        <span class="ruby-identifier">ohai</span> <span class="ruby-node">&quot;#{@address.last}:#{@address.first} added new Notification to queue&quot;</span>
-        <span class="ruby-identifier">queue</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">notification</span>)
-      <span class="ruby-keyword kw">else</span>
-        <span class="ruby-identifier">ohai</span> <span class="ruby-node">&quot;#{@address.last}:#{@address.first} submitted invalid Notification&quot;</span>
+      <span class="ruby-ivar">@buffer</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">notification</span> = <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Notification</span>.<span class="ruby-identifier">valid?</span>(<span class="ruby-identifier">line</span>)
+          <span class="ruby-identifier">ohai</span> <span class="ruby-node">&quot;#{@address.last}:#{@address.first} added new Notification to queue&quot;</span>
+          <span class="ruby-identifier">queue</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">notification</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">ohai</span> <span class="ruby-node">&quot;#{@address.last}:#{@address.first} submitted invalid Notification&quot;</span>
+        <span class="ruby-keyword kw">end</span>
       <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span></pre>
                     </div>
@@ -187,9 +189,9 @@ Add incoming notification to the queue if it is valid
             </div>
             
             <div class="method">
-                <div class="title" id="M000008">
+                <div class="title" id="M000002">
                     
-                    <a name="M000008"></a><b>unbind</b>()
+                    <a name="M000002"></a><b>unbind</b>()
                     
                 </div>
                 
@@ -205,12 +207,12 @@ Called when a client connection is closed
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000008_source')" id="l_M000008_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000002_source')" id="l_M000002_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/987b3e6032f58f2ab87a83b070e42d611f036ed2/lib/apnd/daemon/protocol.rb#L23" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/1bcb358a86324a0865fb2c2be9e0e7bbb64c7b0d/lib/apnd/daemon/protocol.rb#L23" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000008_source" class="dyn-source">
+                    <div id="M000002_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon/protocol.rb, line 23</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unbind</span>
       <span class="ruby-identifier">ohai</span> <span class="ruby-node">&quot;#{@address.last}:#{@address.first} closed connection&quot;</span>
