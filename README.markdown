@@ -79,10 +79,12 @@ push notifications to APND.
 
     # Set the host/port APND is running on
     # (not needed if you're using localhost:22195)
-
+    # Put this in config/initializers/apnd.rb for Rails
     APND::Notification.upstream_host = 'localhost'
     APND::Notification.upstream_port = 22195
 
+
+    # Initialize some notifications
     notification1 = APND::Notification.new(
       :alert  => 'Alert!',
       :token  => 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
@@ -95,12 +97,14 @@ push notifications to APND.
       :badge  => 99
     )
 
+
     # Send multiple notifications at once to avoid overhead in
     # opening/closing the upstream socket connection each time
     APND::Notification.open_upstream_socket do |sock|
       sock.puts notification1
       sock.puts notification2
     end
+
 
     # Send a notification to the upstream socket immediately
     notification3 = APND::Notification.create(
