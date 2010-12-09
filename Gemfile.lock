@@ -1,0 +1,25 @@
+PATH
+  remote: .
+  specs:
+    apnd (0.1.4)
+      daemons (= 1.1.0)
+      eventmachine (= 0.12.10)
+      json (= 1.4.6)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    daemons (1.1.0)
+    eventmachine (0.12.10)
+    json (1.4.6)
+    shoulda (2.11.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  apnd!
+  daemons (= 1.1.0)
+  eventmachine (= 0.12.10)
+  json (= 1.4.6)
+  shoulda
