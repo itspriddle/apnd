@@ -7,8 +7,9 @@ module APND
   # writen to the AppleConnection
   #
   class Daemon
-    autoload :Protocol,        'apnd/daemon/protocol'
-    autoload :AppleConnection, 'apnd/daemon/apple_connection'
+    autoload :Protocol,         'apnd/daemon/protocol'
+    autoload :AppleConnection,  'apnd/daemon/apple_connection'
+    autoload :ServerConnection, 'apnd/daemon/server_connection'
 
     #
     # Create a new Daemon and run it
