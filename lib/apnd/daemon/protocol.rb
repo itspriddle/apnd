@@ -1,19 +1,16 @@
+require 'socket'
+
 module APND
   #
   # Daemon::Protocol handles incoming APNs
   #
-  class Daemon::Protocol < ::EventMachine::Connection
-
-    #
-    # Queue should be the EventMachine queue, see APND::Daemon
-    #
-    attr_accessor :queue
+  module Daemon::Protocol
 
     #
     # Called when a client connection is opened
     #
     def post_init
-      @address = Socket.unpack_sockaddr_in(self.get_peername)
+      @address = ::Socket.unpack_sockaddr_in(self.get_peername)
       ohai "#{@address.last}:#{@address.first} opened connection"
     end
 

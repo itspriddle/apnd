@@ -35,7 +35,7 @@ module APND
     def run!
       EventMachine::run do
         ohai "Starting APND Daemon v#{APND::Version} on #{@bind}:#{@port}"
-        EventMachine::start_server(@bind, @port, APND::Daemon::Protocol) do |server|
+        EventMachine::start_server(@bind, @port, APND::Daemon::ServerConnection) do |server|
           server.queue = @queue
         end
 
