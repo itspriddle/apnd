@@ -87,9 +87,11 @@ href="Daemon/AppleConnection.html">AppleConnection</a>
     <div class="sectiontitle">Classes and Modules</div>
     <ul>
         
+        <li><span class="type">MODULE</span> <a href="Daemon/Protocol.html">APND::Daemon::Protocol</a></li>
+        
         <li><span class="type">CLASS</span> <a href="Daemon/AppleConnection.html">APND::Daemon::AppleConnection</a></li>
         
-        <li><span class="type">CLASS</span> <a href="Daemon/Protocol.html">APND::Daemon::Protocol</a></li>
+        <li><span class="type">CLASS</span> <a href="Daemon/ServerConnection.html">APND::Daemon::ServerConnection</a></li>
         
     </ul>
     
@@ -122,11 +124,11 @@ Create a connection to Apple and a new EM queue
                     <p class="source-link">
                         Source: <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/c54fa1d593c156079496f85561ff32a821c9f058/lib/apnd/daemon.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/d5002e9e18ff262db5f6cffd3b95cf713b30b538/lib/apnd/daemon.rb#L25" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
                     <div id="M000011_source" class="dyn-source">
-                        <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 24</span>
+                        <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 25</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
       <span class="ruby-ivar">@queue</span> = <span class="ruby-constant">EM</span><span class="ruby-operator">::</span><span class="ruby-constant">Queue</span>.<span class="ruby-identifier">new</span>
       <span class="ruby-ivar">@apple</span> = <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span><span class="ruby-operator">::</span><span class="ruby-constant">AppleConnection</span>.<span class="ruby-identifier">new</span>
@@ -160,11 +162,11 @@ Create a new <a href="Daemon.html">Daemon</a> and run it
                     <p class="source-link">
                         Source: <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/c54fa1d593c156079496f85561ff32a821c9f058/lib/apnd/daemon.rb#L16" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/d5002e9e18ff262db5f6cffd3b95cf713b30b538/lib/apnd/daemon.rb#L17" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
                     <div id="M000010_source" class="dyn-source">
-                        <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 16</span>
+                        <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 17</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">run!</span>
       <span class="ruby-identifier">server</span> = <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span>.<span class="ruby-identifier">new</span>
       <span class="ruby-identifier">server</span>.<span class="ruby-identifier">run!</span>
@@ -197,15 +199,15 @@ Run the daemon
                     <p class="source-link">
                         Source: <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/c54fa1d593c156079496f85561ff32a821c9f058/lib/apnd/daemon.rb#L35" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/d5002e9e18ff262db5f6cffd3b95cf713b30b538/lib/apnd/daemon.rb#L36" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
                     <div id="M000012_source" class="dyn-source">
-                        <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 35</span>
+                        <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 36</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run!</span>
       <span class="ruby-constant">EventMachine</span><span class="ruby-operator">::</span><span class="ruby-identifier">run</span> <span class="ruby-keyword kw">do</span>
         <span class="ruby-identifier">ohai</span> <span class="ruby-node">&quot;Starting APND Daemon v#{APND::Version} on #{@bind}:#{@port}&quot;</span>
-        <span class="ruby-constant">EventMachine</span><span class="ruby-operator">::</span><span class="ruby-identifier">start_server</span>(<span class="ruby-ivar">@bind</span>, <span class="ruby-ivar">@port</span>, <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span><span class="ruby-operator">::</span><span class="ruby-constant">Protocol</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>
+        <span class="ruby-constant">EventMachine</span><span class="ruby-operator">::</span><span class="ruby-identifier">start_server</span>(<span class="ruby-ivar">@bind</span>, <span class="ruby-ivar">@port</span>, <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span><span class="ruby-operator">::</span><span class="ruby-constant">ServerConnection</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>
           <span class="ruby-identifier">server</span>.<span class="ruby-identifier">queue</span> = <span class="ruby-ivar">@queue</span>
         <span class="ruby-keyword kw">end</span>
 

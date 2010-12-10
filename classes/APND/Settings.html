@@ -67,9 +67,9 @@
         <dd>
             <ul>
                 
-                <li><a href="#M000027">daemon</a>,</li>
+                <li><a href="#M000024">daemon</a>,</li>
                 
-                <li><a href="#M000028">daemon=</a></li>
+                <li><a href="#M000025">daemon=</a></li>
                 
             </ul>
         </dd>
@@ -78,9 +78,9 @@
         <dd>
             <ul>
                 
-                <li><a href="#M000030">notification</a>,</li>
+                <li><a href="#M000027">notification</a>,</li>
                 
-                <li><a href="#M000031">notification=</a></li>
+                <li><a href="#M000028">notification=</a></li>
                 
             </ul>
         </dd>
@@ -188,9 +188,9 @@ settings
             </div>
             
             <div class="method">
-                <div class="title" id="M000027">
+                <div class="title" id="M000024">
                     
-                    <a name="M000027"></a><b>daemon</b>()
+                    <a name="M000024"></a><b>daemon</b>()
                     
                 </div>
                 
@@ -206,12 +206,12 @@ Returns the <a href="Settings/Daemon.html">Daemon</a> settings
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000027_source')" id="l_M000027_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000024_source')" id="l_M000024_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/9ed5e55b2f943054a3bc04cd4ce60958a66f5935/lib/apnd/settings.rb#L129" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000027_source" class="dyn-source">
+                    <div id="M000024_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/settings.rb, line 129</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">daemon</span>
       <span class="ruby-ivar">@daemon</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Settings</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span>.<span class="ruby-identifier">new</span>
@@ -222,9 +222,9 @@ Returns the <a href="Settings/Daemon.html">Daemon</a> settings
             </div>
             
             <div class="method">
-                <div class="title" id="M000028">
+                <div class="title" id="M000025">
                     
-                    <a name="M000028"></a><b>daemon=</b>(options = {})
+                    <a name="M000025"></a><b>daemon=</b>(options = {})
                     
                 </div>
                 
@@ -240,12 +240,12 @@ Mass assign <a href="Settings/Daemon.html">Daemon</a> settings
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000025_source')" id="l_M000025_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/9ed5e55b2f943054a3bc04cd4ce60958a66f5935/lib/apnd/settings.rb#L136" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000028_source" class="dyn-source">
+                    <div id="M000025_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/settings.rb, line 136</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">daemon=</span>(<span class="ruby-identifier">options</span> = {})
       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:keys</span>)
@@ -261,9 +261,9 @@ Mass assign <a href="Settings/Daemon.html">Daemon</a> settings
             </div>
             
             <div class="method">
-                <div class="title" id="M000030">
+                <div class="title" id="M000027">
                     
-                    <a name="M000030"></a><b>notification</b>()
+                    <a name="M000027"></a><b>notification</b>()
                     
                 </div>
                 
@@ -279,12 +279,12 @@ Returns the <a href="Settings/Notification.html">Notification</a> settings
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000030_source')" id="l_M000030_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000027_source')" id="l_M000027_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/9ed5e55b2f943054a3bc04cd4ce60958a66f5935/lib/apnd/settings.rb#L148" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000030_source" class="dyn-source">
+                    <div id="M000027_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/settings.rb, line 148</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">notification</span>
       <span class="ruby-ivar">@notification</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Settings</span><span class="ruby-operator">::</span><span class="ruby-constant">Notification</span>.<span class="ruby-identifier">new</span>
@@ -295,9 +295,9 @@ Returns the <a href="Settings/Notification.html">Notification</a> settings
             </div>
             
             <div class="method">
-                <div class="title" id="M000031">
+                <div class="title" id="M000028">
                     
-                    <a name="M000031"></a><b>notification=</b>(options = {})
+                    <a name="M000028"></a><b>notification=</b>(options = {})
                     
                 </div>
                 
@@ -313,12 +313,12 @@ Mass assign <a href="Settings/Notification.html">Notification</a> settings
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000031_source')" id="l_M000031_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000028_source')" id="l_M000028_source">show</a>
                         
                         | <a href="http://github.com/itspriddle/apnd/blob/9ed5e55b2f943054a3bc04cd4ce60958a66f5935/lib/apnd/settings.rb#L155" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000031_source" class="dyn-source">
+                    <div id="M000028_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/settings.rb, line 155</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">notification=</span>(<span class="ruby-identifier">options</span> = {})
       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:keys</span>)
