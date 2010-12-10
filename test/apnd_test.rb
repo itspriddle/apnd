@@ -41,12 +41,6 @@ class APNDTest < Test::Unit::TestCase
       end
     end
 
-    should "raise InvalidNotificationHeader parsing a bad packet" do
-      assert_raise APND::Errors::InvalidNotificationHeader do
-        APND::Notification.parse("I'm not a packet!")
-      end
-    end
-
     should "raise InvalidPayload if custom hash is too large" do
       assert_raise APND::Errors::InvalidPayload do
         notification = @notification.dup
@@ -59,11 +53,29 @@ class APNDTest < Test::Unit::TestCase
   end
 
   context "APND Daemon" do
-    should "receive multiple Notifications in a single packet" do
-      notifications = [@@bytes, @@bytes, @@bytes].join("\n")
-      notifications.each_line do |line|
-        assert APND::Notification.valid?(line)
+
+    context "Protocol" do
+      setup do
+        @daemon = TestDaemon.new
       end
+
+      should "add valid notification to queue" do
+        @daemon.receive_data(@@bytes)
+        assert_equal 1, @daemon.queue.size
+      end
+
+      should "receive multiple Notifications in a single packet" do
+        @daemon.receive_data([@@bytes, @@bytes, @@bytes].join("\n"))
+        assert 3, @daemon.queue.size
+      end
+
+      should "raise InvalidNotificationHeader parsing a bad packet" do
+        assert_raise APND::Errors::InvalidNotificationHeader do
+          APND::Notification.parse("I'm not a packet!")
+        end
+        assert 0, @daemon.queue.size
+      end
+
     end
   end
 
