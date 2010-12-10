@@ -1,5 +1,3 @@
-require 'socket'
-
 module APND
   #
   # Daemon::ServerConnection links APND::Daemon::Protocol to EM
