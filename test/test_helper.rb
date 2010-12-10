@@ -22,3 +22,6 @@ class TestDaemon
   end
 
 end
+
+# Silence ohai in testing
+def ohai(*args); end

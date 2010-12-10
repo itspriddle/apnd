@@ -14,24 +14,13 @@ class APNDTest < Test::Unit::TestCase
       })
     end
 
-    context "instances" do
-      should "be initialized with a hash of options" do
-        [:token, :alert, :sound, :badge, :custom].each do |key|
-          assert_not_nil @notification.send(key)
-        end
-      end
-
-      should "return a valid hex_token" do
-        expected = %|\376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202";\345\237\266\205\000\251\242|
-        assert_equal @notification.hex_token, expected
-      end
-
-      should "return a valid byte string" do
-        assert_equal @notification.to_bytes, @@bytes
+    should "allow initialization with options hash" do
+      [:token, :alert, :sound, :badge, :custom].each do |key|
+        assert_not_nil @notification.send(key)
       end
     end
 
-    should "parse a valid packet" do
+    should "parse a raw packet" do
       notification = APND::Notification.parse(@@bytes)
 
       assert notification
@@ -50,10 +39,21 @@ class APNDTest < Test::Unit::TestCase
         APND::Notification.parse(notification.to_bytes)
       end
     end
+
+    context "instances" do
+      should "return a valid hex_token" do
+        expected = %|\376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202";\345\237\266\205\000\251\242|
+        assert_equal @notification.hex_token, expected
+      end
+
+      should "return a valid byte string" do
+        assert_equal @notification.to_bytes, @@bytes
+      end
+    end
+
   end
 
   context "APND Daemon" do
-
     context "Protocol" do
       setup do
         @daemon = TestDaemon.new
@@ -75,7 +75,6 @@ class APNDTest < Test::Unit::TestCase
         end
         assert 0, @daemon.queue.size
       end
-
     end
   end
 
