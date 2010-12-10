@@ -1,7 +1,5 @@
 $:.unshift 'lib'
 
-require 'rubygems'
-
 task :default => :test
 
 require 'rake/testtask'
@@ -29,5 +27,5 @@ task :publish do
   sh "git push origin v#{ver}"
   sh "git push origin master"
   sh "git clean -fd"
-  exec "rake pages"
+  sh "rake pages"
 end
