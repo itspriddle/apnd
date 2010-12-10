@@ -2,7 +2,7 @@ require 'socket'
 
 module APND
   #
-  # Daemon::Protocol handles incoming APNs
+  # Daemon::ServerConnection links APND::Daemon::Protocol to EM
   #
   class Daemon::ServerConnection < ::EventMachine::Connection
 
