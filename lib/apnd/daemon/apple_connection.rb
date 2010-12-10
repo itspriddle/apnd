@@ -63,7 +63,7 @@ module APND
     #
     # Establishes a connection if needed and yields it
     #
-    # Ex: open { |conn| conn.write('write to socket) }
+    # Ex: open { |conn| conn.write('write to socket') }
     #
     def open(&block)
       unless connected?
