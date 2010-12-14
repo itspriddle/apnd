@@ -66,14 +66,14 @@ class APNDTest < Test::Unit::TestCase
 
       should "receive multiple Notifications in a single packet" do
         @daemon.receive_data([@@bytes, @@bytes, @@bytes].join("\n"))
-        assert 3, @daemon.queue.size
+        assert_equal 3, @daemon.queue.size
       end
 
       should "raise InvalidNotificationHeader parsing a bad packet" do
         assert_raise APND::Errors::InvalidNotificationHeader do
           APND::Notification.parse("I'm not a packet!")
         end
-        assert 0, @daemon.queue.size
+        assert_equal 0, @daemon.queue.size
       end
     end
   end
