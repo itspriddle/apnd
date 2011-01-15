@@ -23,5 +23,5 @@ class TestDaemon
 
 end
 
-# Silence ohai in testing
-def ohai(*args); end
+# Silence APND.ohai in testing
+def APND.ohai(*args); end
