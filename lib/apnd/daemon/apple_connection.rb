@@ -57,7 +57,8 @@ module APND
     # Disconnect/connect to Apple
     #
     def reconnect!
-      disconnect! && connect!
+      disconnect!
+      connect!
     end
 
     #
