@@ -35,7 +35,7 @@ module APND
     #
     def run!
       EventMachine::run do
-        APND.ohai "Starting APND Daemon v#{APND::Version} on #{@bind}:#{@port}"
+        APND.logger "Starting APND Daemon v#{APND::Version} on #{@bind}:#{@port}"
         EventMachine::start_server(@bind, @port, APND::Daemon::ServerConnection) do |server|
           server.queue = @queue
         end
@@ -54,19 +54,19 @@ module APND
     def process_notifications!
       count = @queue.size
       if count > 0
-        APND.ohai "Queue has #{count} item#{count == 1 ? '' : 's'}"
+        APND.logger "Queue has #{count} item#{count == 1 ? '' : 's'}"
         @apple.connect!
         count.times do
           @queue.pop do |notification|
             begin
-              APND.ohai "Sending notification for #{notification.token}"
+              APND.logger "Sending notification for #{notification.token}"
               @apple.write(notification.to_bytes)
             rescue Errno::EPIPE, OpenSSL::SSL::SSLError
-              APND.ohai "Error, notification has been added back to the queue"
+              APND.logger "Error, notification has been added back to the queue"
               @queue.push(notification)
               @apple.reconnect!
             rescue RuntimeError => error
-              APND.ohai "Error: #{error}"
+              APND.logger "Error: #{error}"
             end
           end
         end

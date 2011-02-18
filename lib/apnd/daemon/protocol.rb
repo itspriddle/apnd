@@ -11,7 +11,7 @@ module APND
     #
     def post_init
       @address = ::Socket.unpack_sockaddr_in(self.get_peername)
-      APND.ohai "#{@address.last}:#{@address.first} opened connection"
+      APND.logger "#{@address.last}:#{@address.first} opened connection"
     end
 
     #
@@ -23,20 +23,20 @@ module APND
     def unbind
       @buffer.chomp.split("\n").each do |line|
         if notification = APND::Notification.valid?(line)
-          APND.ohai "#{@address.last}:#{@address.first} added new Notification to queue"
+          APND.logger "#{@address.last}:#{@address.first} added new Notification to queue"
           queue.push(notification)
         else
-          APND.ohai "#{@address.last}:#{@address.first} submitted invalid Notification"
+          APND.logger "#{@address.last}:#{@address.first} submitted invalid Notification"
         end
       end
-      APND.ohai "#{@address.last}:#{@address.first} closed connection"
+      APND.logger "#{@address.last}:#{@address.first} closed connection"
     end
 
     #
     # Add incoming notification(s) to @buffer
     #
     def receive_data(data)
-      APND.ohai "#{@address.last}:#{@address.first} buffering data"
+      APND.logger "#{@address.last}:#{@address.first} buffering data"
       (@buffer ||= "") << data
     end
   end

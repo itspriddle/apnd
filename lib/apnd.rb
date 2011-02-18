@@ -24,7 +24,7 @@ module APND
   #
   # Write message to stdout with date
   #
-  def self.ohai(message) #:nodoc:
+  def self.logger(message) #:nodoc:
     puts "[%s] %s" % [Time.now.strftime("%Y-%m-%d %H:%M:%S"), message]
   end
 
