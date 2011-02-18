@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files           += Dir['lib/**/*']
   s.files           += Dir['test/**/*']
 
-  s.executables      = ['apnd', 'apnd-push']
+  s.executables      = ['apnd']
 
   s.add_dependency('eventmachine', '= 0.12.10')
   s.add_dependency('json',         '= 1.4.6')

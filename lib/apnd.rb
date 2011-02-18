@@ -2,6 +2,7 @@ require 'json'
 
 module APND
   autoload :Version,      'apnd/version'
+  autoload :CLI,          'apnd/cli'
   autoload :Errors,       'apnd/errors'
   autoload :Settings,     'apnd/settings'
   autoload :Daemon,       'apnd/daemon'
