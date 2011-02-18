@@ -47,8 +47,8 @@ utility is used to start APND.
 ### APND Client
 
 APND includes a command line client which can be used to send notifications to
-a running APND instance, or Apple directly. It is only recommended to send
-notifications directly to Apple for testing purposes.
+a running APND instance. It is only recommended to send notifications via
+`apnd push` for testing purposes.
 
     Usage:
       apnd push [OPTIONS] --token <token>
