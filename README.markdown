@@ -158,4 +158,4 @@ suit you, check them out instead.
 
 ## Copyright
 
-Copyright (c) 2010 Joshua Priddle. See LICENSE for details.
+Copyright (c) 2010-2011 Joshua Priddle. See LICENSE for details.
