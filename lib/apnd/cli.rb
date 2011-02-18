@@ -2,7 +2,11 @@ require 'daemons'
 require 'optparse'
 
 module APND
-  class CLI
+  class CLI #:nodoc: all
+
+    #
+    # Run apnd push
+    #
     def self.push(argv)
       help = <<-HELP
 Usage:
@@ -83,6 +87,9 @@ Usage:
       APND::Notification.create(options)
     end
 
+    #
+    # Run apnd daemon
+    #
     def self.daemon(argv)
       help = <<-HELP
 Usage:
