@@ -100,9 +100,13 @@ push notifications to APND.
 
     # Send multiple notifications at once to avoid overhead in
     # opening/closing the upstream socket connection each time
+    #
+    # *IMPORTANT!* Use sock.puts as it appends a new line. If you don't,
+    # you'll only receive the first notification.
+
     APND::Notification.open_upstream_socket do |sock|
-      sock.write(notification1.to_bytes)
-      sock.write(notification2.to_bytes)
+      sock.puts(notification1.to_bytes)
+      sock.puts(notification2.to_bytes)
     end
 
 

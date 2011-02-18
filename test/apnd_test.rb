@@ -61,11 +61,13 @@ class APNDTest < Test::Unit::TestCase
 
       should "add valid notification to queue" do
         @daemon.receive_data(@@bytes)
+        @daemon.unbind
         assert_equal 1, @daemon.queue.size
       end
 
       should "receive multiple Notifications in a single packet" do
         @daemon.receive_data([@@bytes, @@bytes, @@bytes].join("\n"))
+        @daemon.unbind
         assert_equal 3, @daemon.queue.size
       end
 

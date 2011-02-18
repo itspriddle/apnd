@@ -17,16 +17,11 @@ module APND
     #
     # Called when a client connection is closed
     #
+    # Checks @buffer for any pending notifications to be
+    # queued
+    #
     def unbind
-      APND.ohai "#{@address.last}:#{@address.first} closed connection"
-    end
-
-    #
-    # Add incoming notification(s) to the queue
-    #
-    def receive_data(data)
-      (@buffer ||= "") << data
-      @buffer.each_line do |line|
+      @buffer.chomp.split("\n").each do |line|
         if notification = APND::Notification.valid?(line)
           APND.ohai "#{@address.last}:#{@address.first} added new Notification to queue"
           queue.push(notification)
@@ -34,6 +29,15 @@ module APND
           APND.ohai "#{@address.last}:#{@address.first} submitted invalid Notification"
         end
       end
+      APND.ohai "#{@address.last}:#{@address.first} closed connection"
+    end
+
+    #
+    # Add incoming notification(s) to @buffer
+    #
+    def receive_data(data)
+      APND.ohai "#{@address.last}:#{@address.first} buffering data"
+      (@buffer ||= "") << data
     end
   end
 end
