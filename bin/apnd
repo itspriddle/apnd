@@ -24,8 +24,12 @@ else
 Usage: apnd COMMAND [ARGS]
 
 Command list:
-  daemon    Start the APND Daemon
-  push      Send a single push notification (for development use only)
+        daemon                       Start the APND Daemon
+        push                         Send a single push notification (for development use only)
+
+Help:
+        --version                    Show version
+        --help                       Show this message
 
   HELP
 end

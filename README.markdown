@@ -12,8 +12,8 @@ are then sent to Apple over a single connection.
 
 Within ruby applications, `APND::Notification` can be used to send
 notifications to a running APND instance (see **APND Notification** below) or
-directly to Apple. A command line utility, `apnd-push`, can be used to send
-single notifications for testing purposes (see **APND Client** below).
+directly to Apple. The command line can be used to send single notifications
+for testing purposes (see **APND Client** below).
 
 
 ## General Usage
@@ -25,7 +25,7 @@ Apple over a single connection as explained above. The `apnd` command line
 utility is used to start APND.
 
     Usage:
-      apnd [OPTIONS] --apple-cert </path/to/cert>
+      apnd daemon [OPTIONS] --apple-cert </path/to/cert>
 
     Required Arguments:
             --apple-cert      [PATH]     PATH to APN certificate from Apple
@@ -41,18 +41,17 @@ utility is used to start APND.
             --foreground                 Run APND in foreground without daemonizing
 
     Help:
-            --version                    Show version
             --help                       Show this message
 
 
 ### APND Client
 
-APND includes a command line utility, `apnd-push`, which can be used to send
-notifications to a running APND instance, or Apple directly. It is only
-recommended to send notifications directly to Apple for testing purposes.
+APND includes a command line client which can be used to send notifications to
+a running APND instance, or Apple directly. It is only recommended to send
+notifications directly to Apple for testing purposes.
 
     Usage:
-      apnd-push [OPTIONS] --token <token>
+      apnd push [OPTIONS] --token <token>
 
     Required Arguments:
             --token  [TOKEN]             Set Notification's iPhone token to TOKEN
@@ -66,7 +65,6 @@ recommended to send notifications directly to Apple for testing purposes.
             --port   [PORT]              Send Notification on PORT (default is 22195)
 
     Help:
-            --version                    Show version
             --help                       Show this message
 
 
