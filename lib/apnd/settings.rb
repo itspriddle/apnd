@@ -105,6 +105,32 @@ module APND
     end
 
     #
+    # Settings for APND::Feedback
+    #
+    class Feedback
+
+      #
+      # Host used to connect to Apple
+      #
+      #   Development: feedback.sandbox.push.apple.com
+      #   Production: feedback.push.apple.com
+      #
+      attr_accessor :host
+
+      #
+      # Port used to connect to Apple
+      #
+      #   Default: 2196
+      #
+      attr_accessor :port
+
+      def initialize
+        @host = 'feedback.sandbox.push.apple.com'
+        @port = 2196
+      end
+    end
+
+    #
     # Returns the AppleConnection settings
     #
     def apple
@@ -156,6 +182,23 @@ module APND
       if options.respond_to?(:keys)
         notification.port = options[:port] if options[:port]
         notification.host = options[:host] if options[:host]
+      end
+    end
+
+    #
+    # Returns the Feedback settings
+    #
+    def feedback
+      @feedback ||= APND::Settings::Feedback.new
+    end
+
+    #
+    # Mass assign Feedback settings
+    #
+    def feedback=(options = {})
+      if options.respond_to?(:keys)
+        feedback.port = options[:port] if options[:port]
+        feedback.host = options[:host] if options[:host]
       end
     end
   end

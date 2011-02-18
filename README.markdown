@@ -118,6 +118,40 @@ push notifications to APND.
     )
 
 
+### APND Feedback
+
+Apple Push Notification Service keeps a log when you attempt to deliver
+a notification to a device that has removed your application. A Feedback
+Service is provided which applications should periodically check to remove
+from their databases.
+
+The `APND::Feedback` class can be used within your application to retrieve
+a list of device tokens that you are sending notifications to but have
+removed your application.
+
+    APND::Feedback.upstream_host = 'feedback.push.apple.com'
+    APND::Feedback.upstream_port = 2196
+
+    # Block form
+    APND::Feedback.find_stale_devices do |token, removed_at|
+      device = YourApp::Device.find_by_token(token)
+      unless device.registered_at > removed_at
+        device.push_enabled = 0
+        device.save
+      end
+    end
+
+    # Array form
+    stale = APND::Feedback.find_stale_devices
+    stale.each do |(token, removed_at)|
+      device = YourApp::Device.find_by_token(token)
+      unless device.registered_at > removed_at
+        device.push_enabled = 0
+        device.save
+      end
+    end
+
+
 ## Prerequisites
 
 You must have a valid Apple Push Notification Certificate for your iPhone

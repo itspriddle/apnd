@@ -6,6 +6,7 @@ module APND
   autoload :Settings,     'apnd/settings'
   autoload :Daemon,       'apnd/daemon'
   autoload :Notification, 'apnd/notification'
+  autoload :Feedback,     'apnd/feedback'
 
   #
   # Returns APND::Settings
