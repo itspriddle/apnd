@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
 class APNDTest < Test::Unit::TestCase
-  @@bytes = %|\000\000 \376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202\";\345\237\266\205\000\251\242\000\\{\"location\":\"New York\",\"aps\":{\"badge\":10,\"sound\":\"default\",\"alert\":\"Red Alert, Numba One!\"}}|
+  @@bytes = %|\000\000 \376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202\";\345\237\266\205\000\251\242\000\\{\"aps\":{\"alert\":\"Red Alert, Numba One!\",\"badge\":10,\"sound\":\"default\"},\"location\":\"New York\"}|
 
   context "APND Notification" do
     setup do
@@ -51,6 +51,8 @@ class APNDTest < Test::Unit::TestCase
       end
     end
 
+
+    
   end
 
   context "APND Daemon" do
@@ -77,6 +79,25 @@ class APNDTest < Test::Unit::TestCase
         end
         assert_equal 0, @daemon.queue.size
       end
+
+
+      context "newlines" do
+        should "be able to parse a notification with an embedded newline character" do
+          @newline_notification = APND::Notification.new({
+            # :token  => 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
+            :token  => '74b2a2197d7727a70f939de05a4c7fe8bd4a7d960a77ef4701a80cb7b293ee23',
+            :alert  => 'Red Alert, Numba One!',
+            :sound  => 'default',
+            :badge  => 10,
+            :custom => { 'location' => 'New York' }
+          })
+          @daemon.receive_data(@newline_notification.to_bytes)
+          @daemon.unbind
+          assert_equal 1, @daemon.queue.size
+
+        end
+      end
+
     end
   end
 
