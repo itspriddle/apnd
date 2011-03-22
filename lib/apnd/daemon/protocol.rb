@@ -21,13 +21,24 @@ module APND
     # queued
     #
     def unbind
-      @buffer.chomp.split("\n").each do |line|
-        if notification = APND::Notification.valid?(line)
+      # totally broken.
+      @buffer.chomp!
+      while(@buffer.length > 0) do
+        # 3 bytes for header
+        # 32 bytes for token
+        # 2 bytes for json length
+        
+        # taking the last is acceptable because we know it's never
+        # longer than 256 bytes from the apple documentation.
+        json_length = @buffer.slice(35,37).unpack('CC').last
+        chunk = @buffer.slice!(0,json_length + 3 + 32 + 2)
+        if notification = APND::Notification.valid?(chunk)
           APND.logger "#{@address.last}:#{@address.first} added new Notification to queue"
           queue.push(notification)
         else
           APND.logger "#{@address.last}:#{@address.first} submitted invalid Notification"
         end
+        @buffer.strip!
       end
       APND.logger "#{@address.last}:#{@address.first} closed connection"
     end
