@@ -188,6 +188,11 @@ wanted, so I rolled my own using theirs as starting points. If APND doesn't
 suit you, check them out instead.
 
 
+## Contributors
+
+* Mark Wotton ([mwotton](https://github.com/mwotton))
+
+
 ## Copyright
 
 Copyright (c) 2010-2011 Joshua Priddle. See LICENSE for details.
