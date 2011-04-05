@@ -124,7 +124,7 @@ Create a connection to Apple and a new EM queue
                     <p class="source-link">
                         Source: <a href="javascript:toggleSource('M000011_source')" id="l_M000011_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/01973be1565816ef42da628d79b8c112854758f0/lib/apnd/daemon.rb#L25" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/c29a7cb6aecf4c2d1628cfcd26fd12903dc08f49/lib/apnd/daemon.rb#L25" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
                     <div id="M000011_source" class="dyn-source">
@@ -162,7 +162,7 @@ Create a new <a href="Daemon.html">Daemon</a> and run it
                     <p class="source-link">
                         Source: <a href="javascript:toggleSource('M000010_source')" id="l_M000010_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/01973be1565816ef42da628d79b8c112854758f0/lib/apnd/daemon.rb#L17" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/c29a7cb6aecf4c2d1628cfcd26fd12903dc08f49/lib/apnd/daemon.rb#L17" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
                     <div id="M000010_source" class="dyn-source">
@@ -199,14 +199,14 @@ Run the daemon
                     <p class="source-link">
                         Source: <a href="javascript:toggleSource('M000012_source')" id="l_M000012_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/01973be1565816ef42da628d79b8c112854758f0/lib/apnd/daemon.rb#L36" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/c29a7cb6aecf4c2d1628cfcd26fd12903dc08f49/lib/apnd/daemon.rb#L36" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
                     <div id="M000012_source" class="dyn-source">
                         <pre><span class="ruby-comment cmt"># File lib/apnd/daemon.rb, line 36</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run!</span>
       <span class="ruby-constant">EventMachine</span><span class="ruby-operator">::</span><span class="ruby-identifier">run</span> <span class="ruby-keyword kw">do</span>
-        <span class="ruby-constant">APND</span>.<span class="ruby-identifier">ohai</span> <span class="ruby-node">&quot;Starting APND Daemon v#{APND::Version} on #{@bind}:#{@port}&quot;</span>
+        <span class="ruby-constant">APND</span>.<span class="ruby-identifier">logger</span> <span class="ruby-node">&quot;Starting APND Daemon v#{APND::Version} on #{@bind}:#{@port}&quot;</span>
         <span class="ruby-constant">EventMachine</span><span class="ruby-operator">::</span><span class="ruby-identifier">start_server</span>(<span class="ruby-ivar">@bind</span>, <span class="ruby-ivar">@port</span>, <span class="ruby-constant">APND</span><span class="ruby-operator">::</span><span class="ruby-constant">Daemon</span><span class="ruby-operator">::</span><span class="ruby-constant">ServerConnection</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">server</span><span class="ruby-operator">|</span>
           <span class="ruby-identifier">server</span>.<span class="ruby-identifier">queue</span> = <span class="ruby-ivar">@queue</span>
         <span class="ruby-keyword kw">end</span>

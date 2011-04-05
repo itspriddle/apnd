@@ -19,7 +19,7 @@
         </h1>
         <ul class="files">
             <li>README.markdown</li>
-            <li>Last modified: Thu Feb 17 01:40:25 -0500 2011</li>
+            <li>Last modified: Fri Apr 01 22:09:45 -0400 2011</li>
         </ul>
     </div>
 
@@ -41,8 +41,8 @@ are then sent to Apple over a single connection.</p>
 
 <p>Within ruby applications, <code>APND::Notification</code> can be used to send
 notifications to a running APND instance (see <strong>APND Notification</strong> below) or
-directly to Apple. A command line utility, <code>apnd-push</code>, can be used to send
-single notifications for testing purposes (see <strong>APND Client</strong> below).</p>
+directly to Apple. The command line can be used to send single notifications
+for testing purposes (see <strong>APND Client</strong> below).</p>
 
 <h2>General Usage</h2>
 
@@ -53,7 +53,7 @@ Apple over a single connection as explained above. The <code>apnd</code> command
 utility is used to start APND.</p>
 
 <pre><code>Usage:
-  apnd [OPTIONS] --apple-cert &lt;/path/to/cert&gt;
+  apnd daemon [OPTIONS] --apple-cert &lt;/path/to/cert&gt;
 
 Required Arguments:
         --apple-cert      [PATH]     PATH to APN certificate from Apple
@@ -69,18 +69,17 @@ Optional Arguments:
         --foreground                 Run APND in foreground without daemonizing
 
 Help:
-        --version                    Show version
         --help                       Show this message
 </code></pre>
 
 <h3>APND Client</h3>
 
-<p>APND includes a command line utility, <code>apnd-push</code>, which can be used to send
-notifications to a running APND instance, or Apple directly. It is only
-recommended to send notifications directly to Apple for testing purposes.</p>
+<p>APND includes a command line client which can be used to send notifications to
+a running APND instance. It is only recommended to send notifications via
+<code>apnd push</code> for testing purposes.</p>
 
 <pre><code>Usage:
-  apnd-push [OPTIONS] --token &lt;token&gt;
+  apnd push [OPTIONS] --token &lt;token&gt;
 
 Required Arguments:
         --token  [TOKEN]             Set Notification's iPhone token to TOKEN
@@ -94,7 +93,6 @@ Optional Arguments:
         --port   [PORT]              Send Notification on PORT (default is 22195)
 
 Help:
-        --version                    Show version
         --help                       Show this message
 </code></pre>
 
@@ -128,9 +126,13 @@ notification2 = APND::Notification.new(
 
 # Send multiple notifications at once to avoid overhead in
 # opening/closing the upstream socket connection each time
+#
+# *IMPORTANT!* Use sock.puts as it appends a new line. If you don't,
+# you'll only receive the first notification.
+
 APND::Notification.open_upstream_socket do |sock|
-  sock.write(notification1.to_bytes)
-  sock.write(notification2.to_bytes)
+  sock.puts(notification1.to_bytes)
+  sock.puts(notification2.to_bytes)
 end
 
 
@@ -140,6 +142,40 @@ notification3 = APND::Notification.create(
   :token  =&gt; 'fe15a27d5df3c34778defb1f4f3880265cc52c0c047682223be59fb68500a9a2',
   :badge  =&gt; 0
 )
+</code></pre>
+
+<h3>APND Feedback</h3>
+
+<p>Apple Push Notification Service keeps a log when you attempt to deliver
+a notification to a device that has removed your application. A Feedback
+Service is provided which applications should periodically check to remove
+from their databases.</p>
+
+<p>The <code>APND::Feedback</code> class can be used within your application to retrieve
+a list of device tokens that you are sending notifications to but have
+removed your application.</p>
+
+<pre><code>APND::Feedback.upstream_host = 'feedback.push.apple.com'
+APND::Feedback.upstream_port = 2196
+
+# Block form
+APND::Feedback.find_stale_devices do |token, removed_at|
+  device = YourApp::Device.find_by_token(token)
+  unless device.registered_at &gt; removed_at
+    device.push_enabled = 0
+    device.save
+  end
+end
+
+# Array form
+stale = APND::Feedback.find_stale_devices
+stale.each do |(token, removed_at)|
+  device = YourApp::Device.find_by_token(token)
+  unless device.registered_at &gt; removed_at
+    device.push_enabled = 0
+    device.save
+  end
+end
 </code></pre>
 
 <h2>Prerequisites</h2>
@@ -181,9 +217,16 @@ at <a href="http://developer.apple.com/">developer.apple.com</a>.</p>
 wanted, so I rolled my own using theirs as starting points. If APND doesn't
 suit you, check them out instead.</p>
 
+<h2>Contributors</h2>
+
+<ul>
+<li>Mark Wotton (<a href="https://github.com/mwotton">mwotton</a>)</li>
+</ul>
+
+
 <h2>Copyright</h2>
 
-<p>Copyright (c) 2010 Joshua Priddle. See LICENSE for details.</p>
+<p>Copyright (c) 2010-2011 Joshua Priddle. See LICENSE for details.</p>
 <script type="text/javascript">$(function() {
   $('a').each(function() { $(this).attr('target', '_blank') })
 })</script>

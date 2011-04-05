@@ -23,15 +23,19 @@
             
             <li><a href="../files/lib/apnd/daemon/apple_connection_rb.html">lib/apnd/daemon/apple_connection.rb</a></li>
             
+            <li><a href="../files/lib/apnd/cli_rb.html">lib/apnd/cli.rb</a></li>
+            
             <li><a href="../files/lib/apnd/daemon/protocol_rb.html">lib/apnd/daemon/protocol.rb</a></li>
             
-            <li><a href="../files/lib/apnd/daemon_rb.html">lib/apnd/daemon.rb</a></li>
-            
             <li><a href="../files/lib/apnd/daemon/server_connection_rb.html">lib/apnd/daemon/server_connection.rb</a></li>
+            
+            <li><a href="../files/lib/apnd/daemon_rb.html">lib/apnd/daemon.rb</a></li>
             
             <li><a href="../files/lib/apnd/errors_rb.html">lib/apnd/errors.rb</a></li>
             
             <li><a href="../files/lib/apnd/notification_rb.html">lib/apnd/notification.rb</a></li>
+            
+            <li><a href="../files/lib/apnd/feedback_rb.html">lib/apnd/feedback.rb</a></li>
             
             <li><a href="../files/lib/apnd/settings_rb.html">lib/apnd/settings.rb</a></li>
             
@@ -59,7 +63,7 @@
         <dd>
             <ul>
                 
-                <li><a href="#M000035">configure</a></li>
+                <li><a href="#M000041">configure</a></li>
                 
             </ul>
         </dd>
@@ -68,7 +72,7 @@
         <dd>
             <ul>
                 
-                <li><a href="#M000034">settings</a></li>
+                <li><a href="#M000040">settings</a></li>
                 
             </ul>
         </dd>
@@ -86,7 +90,11 @@
         
         <li><span class="type">MODULE</span> <a href="APND/Errors.html">APND::Errors</a></li>
         
+        <li><span class="type">CLASS</span> <a href="APND/CLI.html">APND::CLI</a></li>
+        
         <li><span class="type">CLASS</span> <a href="APND/Daemon.html">APND::Daemon</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="APND/Feedback.html">APND::Feedback</a></li>
         
         <li><span class="type">CLASS</span> <a href="APND/Notification.html">APND::Notification</a></li>
         
@@ -105,9 +113,9 @@
             <div class="sectiontitle">Class Public methods</div>
             
             <div class="method">
-                <div class="title" id="M000035">
+                <div class="title" id="M000041">
                     
-                    <a name="M000035"></a><b>configure</b>()
+                    <a name="M000041"></a><b>configure</b>()
                     
                 </div>
                 
@@ -123,13 +131,13 @@ Yields <a href="APND/Settings.html">APND::Settings</a>
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000035_source')" id="l_M000035_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000041_source')" id="l_M000041_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/01973be1565816ef42da628d79b8c112854758f0/lib/apnd.rb#L20" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/b217f92b9d734a6422155c45a5db76f7f65e3f14/lib/apnd.rb#L22" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000035_source" class="dyn-source">
-                        <pre><span class="ruby-comment cmt"># File lib/apnd.rb, line 20</span>
+                    <div id="M000041_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/apnd.rb, line 22</span>
   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">configure</span>
     <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">settings</span>
   <span class="ruby-keyword kw">end</span></pre>
@@ -139,9 +147,9 @@ Yields <a href="APND/Settings.html">APND::Settings</a>
             </div>
             
             <div class="method">
-                <div class="title" id="M000034">
+                <div class="title" id="M000040">
                     
-                    <a name="M000034"></a><b>settings</b>()
+                    <a name="M000040"></a><b>settings</b>()
                     
                 </div>
                 
@@ -157,13 +165,13 @@ Returns <a href="APND/Settings.html">APND::Settings</a>
                 
                 <div class="sourcecode">
                     <p class="source-link">
-                        Source: <a href="javascript:toggleSource('M000034_source')" id="l_M000034_source">show</a>
+                        Source: <a href="javascript:toggleSource('M000040_source')" id="l_M000040_source">show</a>
                         
-                        | <a href="http://github.com/itspriddle/apnd/blob/01973be1565816ef42da628d79b8c112854758f0/lib/apnd.rb#L13" target="_blank" class="github_url">on GitHub</a>
+                        | <a href="http://github.com/itspriddle/apnd/blob/b217f92b9d734a6422155c45a5db76f7f65e3f14/lib/apnd.rb#L15" target="_blank" class="github_url">on GitHub</a>
                         
                     </p>
-                    <div id="M000034_source" class="dyn-source">
-                        <pre><span class="ruby-comment cmt"># File lib/apnd.rb, line 13</span>
+                    <div id="M000040_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/apnd.rb, line 15</span>
   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">settings</span>
     <span class="ruby-ivar">@@settings</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Settings</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-keyword kw">end</span></pre>
