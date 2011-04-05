@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors          = ['Joshua Priddle']
   s.email            = 'jpriddle@nevercraft.net'
 
-  s.files            = %w[ Rakefile README.markdown ]
+  s.files            = %w[ Rakefile README.markdown HISTORY.markdown ]
   s.files           += Dir['bin/**/*']
   s.files           += Dir['lib/**/*']
   s.files           += Dir['test/**/*']
