@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'test/unit'
-require 'shoulda'
+require 'shoulda-context'
 
 begin
   require 'turn'
