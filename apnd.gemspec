@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency('json',         '>= 1.4.6')
   s.add_dependency('daemons',      '= 1.1.0')
 
+  s.add_development_dependency('rake', '= 0.8.7')
   s.add_development_dependency('shoulda-context')
   s.add_development_dependency('sdoc-helpers')
   s.add_development_dependency('rdiscount')
