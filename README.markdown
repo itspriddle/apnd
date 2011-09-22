@@ -1,4 +1,4 @@
-# APND
+# APND [![APND Build Status][Build Icon]][Build Status]
 
 APND (Apple Push Notification Daemon) is a ruby library to send Apple Push
 Notifications to iPhones.
@@ -14,6 +14,9 @@ Within ruby applications, `APND::Notification` can be used to send
 notifications to a running APND instance (see **APND Notification** below) or
 directly to Apple. The command line can be used to send single notifications
 for testing purposes (see **APND Client** below).
+
+[Build Icon]: https://secure.travis-ci.org/itspriddle/apnd.png?branch=master
+[Build Status]: http://travis-ci.org/itspriddle/apnd
 
 
 ## General Usage
