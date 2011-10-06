@@ -46,6 +46,10 @@ module APND
       end
     end
 
+    def enqueue_notification(n)
+      queue.push(n)
+    end
+
   private
 
     #

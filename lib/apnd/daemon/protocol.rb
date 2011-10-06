@@ -34,7 +34,7 @@ module APND
         chunk = @buffer.slice!(0,json_length + 3 + 32 + 2)
         if notification = APND::Notification.valid?(chunk)
           APND.logger "#{@address.last}:#{@address.first} added new Notification to queue"
-          queue.push(notification)
+          enqueue_notification(notification)
         else
           APND.logger "#{@address.last}:#{@address.first} submitted invalid Notification"
         end
@@ -52,3 +52,4 @@ module APND
     end
   end
 end
+

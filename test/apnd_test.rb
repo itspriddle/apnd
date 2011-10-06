@@ -1,9 +1,8 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
 class APNDTest < Test::Unit::TestCase
-  # FIXME: Tests fail if the hash keys here arent in this order. It shouldn't
-  # be so fragile.
-  @@bytes = %|\000\000 \376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202\";\345\237\266\205\000\251\242\000\\{\"location\":\"New York\",\"aps\":{\"badge\":10,\"sound\":\"default\",\"alert\":\"Red Alert, Numba One!\"}}|
+  # Hash keys must be in this order for tests to pass. A bit fragile...
+  @@bytes = %|\000\000 \376\025\242}]\363\303Gx\336\373\037O8\200&\\\305,\f\004v\202\";\345\237\266\205\000\251\242\000\\{\"aps\":{\"alert\":\"Red Alert, Numba One!\",\"badge\":10,\"sound\":\"default\"},\"location\":\"New York\"}|
 
   context "APND Notification" do
     setup do
