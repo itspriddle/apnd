@@ -7,9 +7,9 @@ begin
 rescue LoadError
 end
 
-require 'apnd'
+require 'apnd-persistence'
 
-class TestDaemon
+class TestPersistenceDaemon < APND::Daemon
   include APND::Daemon::Protocol
 
   def initialize
@@ -19,10 +19,6 @@ class TestDaemon
 
   def queue
     @queue
-  end
-
-  def enqueue_notification(n)
-    queue.push(n)
   end
 
 end

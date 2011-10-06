@@ -1,0 +1,14 @@
+# Turns off slave_ok reads if only_master is true
+# only_master: true
+
+defaults: &defaults
+  host: localhost
+  port: 27017
+  database: database
+
+test:
+  <<: *defaults
+  database: database_test
+
+development:
+  <<: *defaults
