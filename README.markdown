@@ -152,6 +152,18 @@ removed your application.
       end
     end
 
+## Persistence
+
+By default, the APND daemon uses an in-memory queue to collect
+notifications until it tries to send them Apple. In the event that the
+daemon crashes, anything in the queue is lost.
+
+You can add persistence, using MongoDB and MongoMapper simply by requiring
+apnd-persistence rather than apnd, e.g.
+
+    require 'apnd-persistence'
+
+Done! See Requirements.
 
 ## Prerequisites
 
@@ -165,6 +177,13 @@ at [developer.apple.com](http://developer.apple.com/).
 * [EventMachine](http://github.com/eventmachine/eventmachine)
 * [Daemons](http://github.com/ghazel/daemons)
 * [JSON](http://github.com/flori/json)
+
+For persistence, you will also need:
+
+* MongoDB
+* MongoMapper
+
+and everything those pull in.
 
 Ruby must be compiled with OpenSSL support.
 
