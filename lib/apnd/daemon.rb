@@ -57,6 +57,7 @@ module APND
         APND.logger "Queue has #{count} item#{count == 1 ? '' : 's'}"
         @apple.connect!
         count.times do
+
           @queue.pop do |notification|
             begin
               APND.logger "Sending notification for #{notification.token}"
@@ -67,6 +68,12 @@ module APND
               @apple.reconnect!
             rescue RuntimeError => error
               APND.logger "Error: #{error}"
+            rescue => e
+              p e.message
+              p e.backtrace
+              p "reconnection but ignoring bad notification"
+              p notification
+              @apple.reconnect!
             end
           end
         end
