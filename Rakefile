@@ -1,12 +1,14 @@
 $:.unshift 'lib'
 
-task :default => :test
+begin
+  require 'rspec/core/rake_task'
+rescue LoadError
+  puts "Please run `bundle install' first"
+  exit
+end
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test' << '.'
-  test.test_files = FileList['test/**/*_test.rb']
-  test.verbose = true
+RSpec::Core::RakeTask.new :spec do |t|
+  t.rspec_opts = %w[--color --format documentation]
 end
 
 desc "Open an irb session preloaded with this library"
@@ -14,7 +16,7 @@ task :console do
   sh "irb -rubygems -r ./lib/apnd.rb -I ./lib"
 end
 
-require 'sdoc_helpers'
+#require 'sdoc_helpers'
 desc "Push a new version to Gemcutter"
 task :publish do
   require 'apnd/version'
@@ -27,5 +29,6 @@ task :publish do
   sh "git push origin v#{ver}"
   sh "git push origin master"
   sh "git clean -fd"
-  sh "rake pages"
 end
+
+task :default => :spec
