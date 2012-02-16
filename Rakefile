@@ -16,7 +16,6 @@ task :console do
   sh "irb -rubygems -r ./lib/apnd.rb -I ./lib"
 end
 
-#require 'sdoc_helpers'
 desc "Push a new version to Gemcutter"
 task :publish do
   require 'apnd/version'
