@@ -53,7 +53,7 @@ module APND
     def receive
       tokens = []
       @apple.open do |sock|
-        while line = sock.gets
+      while line = sock.read(38)
           payload = line.strip.unpack('N1n1H140')
           tokens << [payload[2].strip, Time.at(payload[0])]
         end
